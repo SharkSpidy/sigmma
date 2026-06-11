@@ -356,7 +356,7 @@ const EcosystemTree: React.FC = () => {
                     </svg>
                   </div>
                   <p className="text-charcoal/40 text-sm font-medium">
-                    Select a subsidiary node to explore its specialization and visit its website.
+                    Select a division node to explore its specialization and visit its website.
                   </p>
                 </div>
               )}
