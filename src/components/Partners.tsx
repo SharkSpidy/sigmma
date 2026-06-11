@@ -84,24 +84,24 @@ const Partners: React.FC = () => {
         </div>
       </div>
 
-      {/* FOR CONTACT--- MAKE CHANGES HEREEEE!!!!!!!!!!!!!!!!!!!! */}
+      {/* FOR CONTACT */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16">
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-6">
           {[
             {
-              icon: '✈️',
-              title: 'Aviation-Grade Precision',
-              text: 'Every BHS and PBB installation meets IATA and ICAO standards, backed by rigorous site acceptance testing.',
+              icon: '🌎',
+              title: 'NAMER Region',
+              text: 'info@sigmma.co.nz',
             },
             {
-              icon: '🔧',
-              title: 'End-to-End Accountability',
-              text: 'From feasibility through commissioning, a single Sigmma entity owns the project outcome — no fragmented handoffs.',
+              icon: '🌏',
+              title: 'APAC Region',
+              text: 'sales@sigmma.co.nz',
             },
             {
-              icon: '🌐',
-              title: 'Cross-Border Execution',
-              text: 'Proven delivery model spanning New Zealand, South Asia, the Middle East, and European markets.',
+              icon: '🌎',
+              title: 'EMEA Region',
+              text: 'ingridfr.sigmma.europe@outlook.com',
             },
           ].map((item) => (
             <div
