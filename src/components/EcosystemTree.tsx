@@ -20,7 +20,7 @@ const companies: Company[] = [
     tagline: 'Precision Rubber Engineering',
     specialization: 'Rubber & Industrial Solutions',
     description:
-      'Specialists in custom-engineered rubber seals, gaskets, and conveyor belting solutions for heavy industry and construction sectors across New Zealand.',
+      'Specialists in custom-engineered rubber products like sheets, gaskets, seals, and conveyor belting solutions for industries like food, airports, mining, quary, cement and dairy across New Zealand.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <circle cx="12" cy="12" r="9" />
@@ -28,7 +28,7 @@ const companies: Company[] = [
         <path strokeLinecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2" />
       </svg>
     ),
-    tags: ['Rubber Seals', 'Conveyor Belts', 'Industrial Gaskets'],
+    tags: ['Rubber Sheeting', 'Conveyor Belts', 'Industrial Gaskets'],
     region: 'New Zealand',
   },
   {
@@ -38,24 +38,24 @@ const companies: Company[] = [
     tagline: 'Airport & Terminal Systems',
     specialization: 'Airport Solutions',
     description:
-      'End-to-end integrators of airport terminal infrastructure including Baggage Handling Systems (BHS), Passenger Boarding Bridges (PBB), and security screening technology.',
+      'End-to-end integrators of airport terminal infrastructure including design consultancy of Baggage Handling Systems (BHS) and security screening .',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 3l2 6H4L6 3zM6 9v12M18 3l-2 6h4L18 3zM18 9v12M6 15h12" />
         <path strokeLinecap="round" d="M3 21h18" />
       </svg>
     ),
-    tags: ['BHS Systems', 'Boarding Bridges', 'Security Screening'],
-    region: 'Global',
+    tags: ['BHS Designs', 'IT Integration', 'Controls And Software'],
+    region: 'World Wide',
   },
   {
     id: 'industrial-conveyors',
-    name: 'Industrial Conveyors',
+    name: 'Industrial Conveyors Limited',
     url: 'https://industrialconveyors.co.nz/',
     tagline: 'Material Handling Mastery',
     specialization: 'Material Handling Systems',
     description:
-      'Designers and installers of high-throughput conveyor systems, automated sorting lines, and bespoke material-flow layouts for logistics, mining, and manufacturing.',
+      'Designers and manufacturers of airport conveyor systems and material handling for various industries. ',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <rect x="2" y="9" width="20" height="4" rx="1" />
@@ -65,7 +65,7 @@ const companies: Company[] = [
         <path strokeLinecap="round" d="M9 9V7M15 9V7" />
       </svg>
     ),
-    tags: ['Conveyor Design', 'Automated Sorting', 'Flow Optimization'],
+    tags: ['Airport Converyor System', 'Material Handling', 'Airport Security Equipment'],
     region: 'New Zealand',
   },
   {
@@ -75,13 +75,13 @@ const companies: Company[] = [
     tagline: 'Enterprise Trust Solutions',
     specialization: 'Technology & Assurance',
     description:
-      'Technology-driven enterprise serving compliance, digital trust, and assurance solutions, bridging Eastern European expertise with global corporate governance standards.',
+      'Manufacturers of Baggage Handling Systems Turnkey, ATRS, Self Bag Drops, Warehouse automation.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
       </svg>
     ),
-    tags: ['Compliance', 'Digital Trust', 'Governance'],
+    tags: ['BHS', 'ATRS', 'Warehouse Automation'],
     region: 'Romania / Europe',
   },
 ]
