@@ -84,7 +84,7 @@ const Partners: React.FC = () => {
         </div>
       </div>
 
-      {/* Client story callout */}
+      {/* FOR CONTACT--- MAKE CHANGES HEREEEE!!!!!!!!!!!!!!!!!!!! */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16">
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-6">
           {[

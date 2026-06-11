@@ -11,7 +11,7 @@ interface Metric {
 
 const metrics: Metric[] = [
   {
-    value: 20,
+    value: 60,
     suffix: '+',
     label: 'Team Members',
     sublabel: 'Across NZ, India & Europe',
@@ -24,7 +24,7 @@ const metrics: Metric[] = [
   {
     value: 4,
     suffix: '',
-    label: 'Global Subsidiaries',
+    label: 'Global Divisions',
     sublabel: 'Specialised operating companies',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
@@ -35,7 +35,7 @@ const metrics: Metric[] = [
   {
     value: 3,
     suffix: '',
-    label: 'Countries',
+    label: 'Manufacturing Locations',
     sublabel: 'NZ · Romania · India',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
@@ -44,11 +44,10 @@ const metrics: Metric[] = [
     ),
   },
   {
-    value: 1.2,
-    suffix: 'B+',
-    prefix: 'USD ',
-    label: 'Projects Planned',
-    sublabel: 'Combined pipeline value',
+    value: 45,
+    suffix: '+',
+    label: 'Combined Experience',
+    sublabel: 'Combined Experience value',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -184,17 +183,16 @@ const GlobalMetrics: React.FC = () => {
                     Operating Across Three Continents
                   </h3>
                   <p className="text-white/55 text-sm leading-relaxed">
-                    With offices in New Zealand and India, and a European foothold through SelfTrust
-                    in Romania, Sigmma bridges markets that few holding groups dare to connect.
+                    With a footprint spanning New Zealand, India, and a European base in Romania through SelfTrust, Sigmma brings a unique global perspective to markets that seldom meet.
                   </p>
                 </div>
 
                 {/* Office cards */}
                 <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                   {[
-                    { city: 'Auckland', country: 'New Zealand', flag: '🇳🇿', role: 'HQ & Operations' },
-                    { city: 'Delhi', country: 'India', flag: '🇮🇳', role: 'Project Delivery' },
-                    { city: 'Bucharest', country: 'Romania', flag: '🇷🇴', role: 'Tech & Compliance' },
+                    { city: 'Wellington', country: 'New Zealand', flag: '🇳🇿', role: 'HQ' },
+                    { city: 'Delhi', country: 'India', flag: '🇮🇳' },
+                    { city: 'Bucharest', country: 'Romania', flag: '🇷🇴' },
                   ].map((office) => (
                     <div
                       key={office.city}
