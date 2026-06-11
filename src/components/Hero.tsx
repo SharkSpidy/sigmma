@@ -127,12 +127,12 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
           <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
           <div className="w-px h-8 bg-white/40 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-white/80 animate-bounce origin-top" style={{ animationDuration: '1.5s' }} />
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Bottom wave divider */}
