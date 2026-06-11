@@ -137,7 +137,7 @@ const EcosystemTree: React.FC = () => {
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
             Four specialized divisions. Unified strategy.
-            Click any node to explore each company's domain.
+            Explore Each Division.
           </p>
         </div>
 
