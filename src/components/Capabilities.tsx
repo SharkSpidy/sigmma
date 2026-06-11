@@ -17,12 +17,12 @@ const capabilities: Capability[] = [
     category: 'Aviation Infrastructure',
     title: 'Airport Solutions',
     description:
-      'Full-lifecycle airport terminal systems integration — from conceptual design through to commissioning and ongoing maintenance of critical airside and landside infrastructure.',
+      'Full-lifecycle airport terminal systems integration — from conceptual design through to manufacturing, commissioning and ongoing maintenance of critical airside and landside infrastructure.',
     items: [
-      { label: 'BHS Systems', detail: 'Baggage handling & screening' },
-      { label: 'Boarding Bridges', detail: 'PBB design & installation' },
-      { label: 'Security Screening', detail: 'Integrated checkpoint tech' },
-      { label: 'Terminal Fit-Out', detail: 'Infrastructure & MEP' },
+      { label: 'BHS Systems', detail: 'Baggage handling & inline screening' },
+      { label: 'ATRS', detail: 'Automatic Tray Retrieval System' },
+      { label: 'Security Screening', detail: 'Departures and Arrivals for Bags and People' },
+      { label: 'Terminal Fit-Out', detail: 'Airline Counters, CCTV, FIDS' },
     ],
     accent: '#004B87',
     icon: (
@@ -40,12 +40,12 @@ const capabilities: Capability[] = [
     category: 'Logistics & Industry',
     title: 'Material Handling Systems',
     description:
-      'Precision-engineered conveyor and sorting systems that maximise throughput, reduce downtime, and adapt to the dynamic demands of modern logistics and manufacturing.',
+      'Smart-engineered conveyor and sorting systems that maximise throughput, reduce downtime, and adapt to the dynamic demands of modern logistics and manufacturing.',
     items: [
-      { label: 'Conveyor Systems', detail: 'Belt, roller & overhead' },
+      { label: 'Conveyor Systems', detail: 'Belt, roller & chain' },
       { label: 'Automated Sorting', detail: 'High-speed divert & merge' },
-      { label: 'Custom Layouts', detail: 'Site-specific flow design' },
-      { label: 'MRO Services', detail: 'Maintenance & spare parts' },
+      { label: 'Custom Designs', detail: 'Site-specific flow design' },
+      { label: 'Cargo Systems', detail: 'Air Cargo' },
     ],
     accent: '#005fa3',
     icon: (
@@ -66,7 +66,7 @@ const capabilities: Capability[] = [
     description:
       'Bespoke rubber compounds and engineered components meeting the toughest industrial standards — built for sealing, conveying, and protecting in the harshest environments.',
     items: [
-      { label: 'Engineered Seals', detail: 'Custom profiles & compounds' },
+      { label: 'Rubber Sheetings', detail: 'Custom profiles & compounds' },
       { label: 'Conveyor Belting', detail: 'Heavy-duty & food-grade' },
       { label: 'Industrial Gaskets', detail: 'Chemical & thermal resistant' },
     ],
