@@ -136,7 +136,7 @@ const EcosystemTree: React.FC = () => {
             The Sigmma Family
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Four specialized subsidiaries. One unified holding strategy.
+            Four specialized divisions. Unified strategy.
             Click any node to explore each company's domain.
           </p>
         </div>

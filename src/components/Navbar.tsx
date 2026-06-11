@@ -20,13 +20,13 @@ const Navbar: React.FC = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-corp-blue shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo - Kept exactly as provided */}
+          {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-corp-blue flex items-center justify-center shadow-md">
               <span className="text-accent-cyan font-display font-bold text-lg leading-none">S</span>
             </div>
             <span className="font-display font-semibold text-xl tracking-tight text-white">
-              Sigmma New Zealand
+              Sigmma <span className="text-lg">New Zealand</span>
             </span>
           </div>
 
