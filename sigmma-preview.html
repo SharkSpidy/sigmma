@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sigmma Holdings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'corp-blue': '#004B87',
+        'corp-dark': '#003566',
+        'corp-light': '#005fa3',
+        'cyan': '#00AEEF',
+        'charcoal': '#1C1E21',
+        'ice': '#F4F7F6',
+      },
+      fontFamily: {
+        display: ['Sora', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:#1C1E21;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Sora',sans-serif}
+
+  /* ---- Reveal on scroll ---- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+  .stagger{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .stagger.on{opacity:1;transform:none}
+
+  /* ---- Navbar glass ---- */
+  .glass{background:rgba(255,255,255,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,75,135,.08)}
+
+  /* ---- Hero ---- */
+  .hero-bg{background:linear-gradient(145deg,#002a52 0%,#004B87 50%,#005fa3 100%)}
+
+  /* ---- Gradient text ---- */
+  .gt{background:linear-gradient(90deg,#004B87,#00AEEF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+  /* ---- Shimmer button ---- */
+  .btn-p{position:relative;overflow:hidden;background:#004B87;color:#fff;transition:background .3s,transform .2s,box-shadow .3s}
+  .btn-p::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.15) 50%,transparent 60%);transform:translateX(-100%);transition:transform .5s}
+  .btn-p:hover::after{transform:translateX(100%)}
+  .btn-p:hover{background:#005fa3;box-shadow:0 8px 24px rgba(0,75,135,.4);transform:translateY(-1px)}
+
+  /* ---- Cards ---- */
+  .card{transition:transform .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,75,135,.14)}
+
+  /* ---- Tree line illuminate ---- */
+  .tree-branch{transition:stroke .25s ease,stroke-width .25s ease,filter .25s ease}
+
+  /* ---- Preview card animate ---- */
+  @keyframes previewIn{from{opacity:0;transform:scale(.93) translateY(8px)}to{opacity:1;transform:none}}
+  .preview-in{animation:previewIn .32s cubic-bezier(.34,1.56,.64,1) forwards}
+
+  /* ---- Marquee ---- */
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .marquee{display:flex;width:max-content;animation:marquee 28s linear infinite}
+  .marquee:hover{animation-play-state:paused}
+
+  /* ---- Scrollbar ---- */
+  ::-webkit-scrollbar{width:5px}
+  ::-webkit-scrollbar-thumb{background:#004B87;border-radius:3px}
+  ::-webkit-scrollbar-thumb:hover{background:#00AEEF}
+
+  /* ---- Mobile accordion transition ---- */
+  .acc-body{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease;opacity:0}
+  .acc-body.open{max-height:500px;opacity:1}
+</style>
+</head>
+<body class="bg-white">
+
+<!-- ════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-corp-blue flex items-center justify-center shadow-md">
+          <span class="text-cyan font-display font-bold text-lg leading-none">S</span>
+        </div>
+        <span id="nav-brand" class="font-display font-semibold text-xl tracking-tight text-white transition-colors duration-300">Sigmma</span>
+      </div>
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#ecosystem" class="nav-link text-sm font-medium text-white/80 hover:text-cyan transition-colors duration-200 relative group" onclick="smoothScroll(event,'#ecosystem')">
+          Ecosystem<span class="absolute -bottom-0.5 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#capabilities" class="nav-link text-sm font-medium text-white/80 hover:text-cyan transition-colors duration-200 relative group" onclick="smoothScroll(event,'#capabilities')">
+          Capabilities<span class="absolute -bottom-0.5 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#metrics" class="nav-link text-sm font-medium text-white/80 hover:text-cyan transition-colors duration-200 relative group" onclick="smoothScroll(event,'#metrics')">
+          Scale<span class="absolute -bottom-0.5 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#partners" class="nav-link text-sm font-medium text-white/80 hover:text-cyan transition-colors duration-200 relative group" onclick="smoothScroll(event,'#partners')">
+          Partners<span class="absolute -bottom-0.5 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="mailto:info@sigmma.com" class="btn-p text-sm font-semibold px-5 py-2.5 rounded-lg">Get in Touch</a>
+      </div>
+      <!-- Mobile hamburger -->
+      <button id="mob-btn" class="md:hidden p-2 text-white" onclick="toggleMobile()" aria-label="Toggle menu">
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path id="ham-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="ham-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mob-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300">
+    <div class="glass border-t border-corp-blue/10 px-6 py-4 flex flex-col gap-4">
+      <a href="#ecosystem" class="text-charcoal font-medium text-sm hover:text-cyan transition-colors" onclick="smoothScroll(event,'#ecosystem');toggleMobile()">Ecosystem</a>
+      <a href="#capabilities" class="text-charcoal font-medium text-sm hover:text-cyan transition-colors" onclick="smoothScroll(event,'#capabilities');toggleMobile()">Capabilities</a>
+      <a href="#metrics" class="text-charcoal font-medium text-sm hover:text-cyan transition-colors" onclick="smoothScroll(event,'#metrics');toggleMobile()">Scale</a>
+      <a href="#partners" class="text-charcoal font-medium text-sm hover:text-cyan transition-colors" onclick="smoothScroll(event,'#partners');toggleMobile()">Partners</a>
+      <a href="mailto:info@sigmma.com" class="btn-p text-sm font-semibold px-5 py-2.5 rounded-lg text-center" onclick="toggleMobile()">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative min-h-screen hero-bg flex flex-col justify-center overflow-hidden">
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 opacity-[0.06]" aria-hidden="true">
+    <svg width="100%" height="100%"><defs><pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0L0 0 0 60" fill="none" stroke="white" stroke-width=".8"/></pattern></defs><rect width="100%" height="100%" fill="url(#grid)"/></svg>
+  </div>
+  <!-- Radial glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full pointer-events-none" style="background:radial-gradient(circle,rgba(0,174,239,.12) 0%,transparent 70%)" aria-hidden="true"></div>
+  <!-- Deco circles -->
+  <div class="absolute top-24 right-16 w-64 h-64 opacity-10 hidden lg:block" aria-hidden="true">
+    <svg viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="80" stroke="#00AEEF" stroke-width="1.5" stroke-dasharray="8 4"/><circle cx="100" cy="100" r="50" stroke="#00AEEF" stroke-width="1" opacity=".5"/><circle cx="100" cy="100" r="4" fill="#00AEEF"/></svg>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-20">
+    <div class="max-w-3xl">
+      <!-- Badge -->
+      <div id="h-badge" class="inline-flex items-center gap-2 mb-8" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan" style="animation:pulse 2s infinite"></span>
+        <span class="text-cyan text-xs font-semibold uppercase tracking-widest">Global Holdings Group</span>
+      </div>
+      <!-- Headline -->
+      <h1 id="h-head" class="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+        Comprehensive Solutions for <span style="background:linear-gradient(90deg,#00AEEF,#7dd3fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Airport Terminal</span> &amp; Industrial Operations
+      </h1>
+      <!-- Sub -->
+      <p id="h-sub" class="text-white/65 text-lg lg:text-xl leading-relaxed max-w-2xl mb-10" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+        Sigmma Holdings orchestrates a portfolio of specialised subsidiaries delivering precision-engineered systems across aviation infrastructure, material handling, and industrial rubber solutions — spanning New Zealand, Europe, and beyond.
+      </p>
+      <!-- CTA -->
+      <div id="h-cta" class="flex flex-col sm:flex-row gap-4" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease">
+        <button onclick="smoothScroll(event,'#ecosystem')" class="btn-p px-8 py-4 rounded-xl text-base font-semibold inline-flex items-center gap-2 group">
+          Explore Our Ecosystem
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </button>
+        <button onclick="smoothScroll(event,'#capabilities')" class="px-8 py-4 rounded-xl text-base font-semibold text-white border border-white/25 hover:border-cyan hover:text-cyan transition-all duration-300">
+          Our Capabilities
+        </button>
+      </div>
+    </div>
+    <!-- Scroll hint -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-35 pointer-events-none">
+      <span class="text-white text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-8 bg-white/40 overflow-hidden"><div class="w-full h-full bg-white/80" style="animation:bounce 1.5s infinite"></div></div>
+    </div>
+  </div>
+  <!-- Wave divider -->
+  <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none"><path d="M0 60 L0 40 Q360 0 720 30 Q1080 60 1440 20 L1440 60 Z" fill="white"/></svg>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     ECOSYSTEM TREE
+════════════════════════════════════════════ -->
+<section id="ecosystem" class="bg-white py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Header -->
+    <div class="reveal text-center mb-16 lg:mb-20">
+      <span class="inline-block text-cyan text-xs font-semibold uppercase tracking-widest mb-4">Corporate Ecosystem</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-corp-blue leading-tight mb-4">The Sigmma Family</h2>
+      <p class="text-charcoal/60 text-lg max-w-2xl mx-auto">Four specialised subsidiaries. One unified holding strategy. Click any node to explore.</p>
+    </div>
+
+    <!-- DESKTOP TREE (hidden on mobile) -->
+    <div id="desktop-tree" class="reveal hidden md:flex gap-8 items-start">
+      <!-- Left: SVG tree -->
+      <div class="flex-1 min-w-0 relative" style="height:480px">
+        <svg id="tree-svg" class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 620 480" preserveAspectRatio="xMidYMid meet">
+          <!-- Horizontal trunk -->
+          <line x1="200" y1="240" x2="330" y2="240" stroke="#004B87" stroke-width="1.5" opacity=".15"/>
+          <!-- Vertical spine -->
+          <line x1="330" y1="90" x2="330" y2="395" stroke="#004B87" stroke-width="1.5" opacity=".15"/>
+          <!-- Branches -->
+          <line id="br-0" class="tree-branch" x1="330" y1="90"  x2="356" y2="90"  stroke="#004B87" stroke-width="1.5" opacity=".2"/>
+          <line id="br-1" class="tree-branch" x1="330" y1="200" x2="356" y2="200" stroke="#004B87" stroke-width="1.5" opacity=".2"/>
+          <line id="br-2" class="tree-branch" x1="330" y1="300" x2="356" y2="300" stroke="#004B87" stroke-width="1.5" opacity=".2"/>
+          <line id="br-3" class="tree-branch" x1="330" y1="395" x2="356" y2="395" stroke="#004B87" stroke-width="1.5" opacity=".2"/>
+          <!-- Junction dots -->
+          <circle id="jd-0" cx="330" cy="90"  r="3" fill="#004B87" opacity=".3" class="transition-all duration-300"/>
+          <circle id="jd-1" cx="330" cy="200" r="3" fill="#004B87" opacity=".3" class="transition-all duration-300"/>
+          <circle id="jd-2" cx="330" cy="300" r="3" fill="#004B87" opacity=".3" class="transition-all duration-300"/>
+          <circle id="jd-3" cx="330" cy="395" r="3" fill="#004B87" opacity=".3" class="transition-all duration-300"/>
+        </svg>
+
+        <!-- SIGMMA hub node -->
+        <div class="absolute" style="left:80px;top:180px;width:128px;height:128px">
+          <div class="w-32 h-32 rounded-2xl flex flex-col items-center justify-center shadow-xl" style="background:linear-gradient(145deg,#002a52,#004B87);box-shadow:0 0 0 4px rgba(0,75,135,.15),0 8px 32px rgba(0,75,135,.3)">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center mb-1" style="background:rgba(0,174,239,.2)">
+              <span class="text-cyan font-display font-bold text-lg">S</span>
+            </div>
+            <span class="text-white font-display font-bold text-sm tracking-wide">SIGMMA</span>
+            <span class="text-white/50 text-[9px] tracking-widest uppercase mt-0.5">Holdings</span>
+          </div>
+        </div>
+
+        <!-- Child nodes -->
+        <!-- Node 0: Rubber Bits NZ -->
+        <div class="absolute" style="left:370px;top:56px;width:230px">
+          <button class="tree-node w-full text-left" data-id="0" onmouseenter="nodeHover(0,true)" onmouseleave="nodeHover(0,false)" onclick="nodeClick(0)">
+            <div id="node-0" class="flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 transition-all duration-300" style="border-color:rgba(0,75,135,.15);background:white;box-shadow:0 2px 8px rgba(0,75,135,.06)">
+              <div id="ni-0" class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300" style="background:rgba(0,75,135,.07);color:#004B87">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div id="nt-0" class="font-display font-semibold text-sm leading-tight truncate transition-colors duration-300">Rubber Bits NZ</div>
+                <div class="text-[11px] text-charcoal/45 mt-0.5 truncate">Precision Rubber Engineering</div>
+              </div>
+              <svg id="nc-0" class="w-3.5 h-3.5 flex-shrink-0 ml-auto transition-all duration-300" style="color:#004B87;opacity:.3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+        </div>
+
+        <!-- Node 1: Mexeltec -->
+        <div class="absolute" style="left:370px;top:166px;width:230px">
+          <button class="tree-node w-full text-left" data-id="1" onmouseenter="nodeHover(1,true)" onmouseleave="nodeHover(1,false)" onclick="nodeClick(1)">
+            <div id="node-1" class="flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 transition-all duration-300" style="border-color:rgba(0,75,135,.15);background:white;box-shadow:0 2px 8px rgba(0,75,135,.06)">
+              <div id="ni-1" class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300" style="background:rgba(0,75,135,.07);color:#004B87">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3l2 6H4L6 3zM6 9v12M18 3l-2 6h4L18 3zM18 9v12M6 15h12"/><path stroke-linecap="round" d="M3 21h18"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div id="nt-1" class="font-display font-semibold text-sm leading-tight truncate transition-colors duration-300">Mexeltec</div>
+                <div class="text-[11px] text-charcoal/45 mt-0.5 truncate">Airport &amp; Terminal Systems</div>
+              </div>
+              <svg id="nc-1" class="w-3.5 h-3.5 flex-shrink-0 ml-auto transition-all duration-300" style="color:#004B87;opacity:.3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+        </div>
+
+        <!-- Node 2: Industrial Conveyors -->
+        <div class="absolute" style="left:370px;top:266px;width:230px">
+          <button class="tree-node w-full text-left" data-id="2" onmouseenter="nodeHover(2,true)" onmouseleave="nodeHover(2,false)" onclick="nodeClick(2)">
+            <div id="node-2" class="flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 transition-all duration-300" style="border-color:rgba(0,75,135,.15);background:white;box-shadow:0 2px 8px rgba(0,75,135,.06)">
+              <div id="ni-2" class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300" style="background:rgba(0,75,135,.07);color:#004B87">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><rect x="2" y="9" width="20" height="4" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><path stroke-linecap="round" d="M6 13v2M18 13v2M9 9V7M15 9V7"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div id="nt-2" class="font-display font-semibold text-sm leading-tight truncate transition-colors duration-300">Industrial Conveyors</div>
+                <div class="text-[11px] text-charcoal/45 mt-0.5 truncate">Material Handling Mastery</div>
+              </div>
+              <svg id="nc-2" class="w-3.5 h-3.5 flex-shrink-0 ml-auto transition-all duration-300" style="color:#004B87;opacity:.3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+        </div>
+
+        <!-- Node 3: SelfTrust -->
+        <div class="absolute" style="left:370px;top:361px;width:230px">
+          <button class="tree-node w-full text-left" data-id="3" onmouseenter="nodeHover(3,true)" onmouseleave="nodeHover(3,false)" onclick="nodeClick(3)">
+            <div id="node-3" class="flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 transition-all duration-300" style="border-color:rgba(0,75,135,.15);background:white;box-shadow:0 2px 8px rgba(0,75,135,.06)">
+              <div id="ni-3" class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300" style="background:rgba(0,75,135,.07);color:#004B87">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div id="nt-3" class="font-display font-semibold text-sm leading-tight truncate transition-colors duration-300">SelfTrust</div>
+                <div class="text-[11px] text-charcoal/45 mt-0.5 truncate">Enterprise Trust Solutions</div>
+              </div>
+              <svg id="nc-3" class="w-3.5 h-3.5 flex-shrink-0 ml-auto transition-all duration-300" style="color:#004B87;opacity:.3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right: Preview panel -->
+      <div class="w-96 flex-shrink-0">
+        <div id="preview-empty" class="rounded-2xl border-2 border-dashed border-corp-blue/15 flex flex-col items-center justify-center text-center px-8 py-16">
+          <div class="w-12 h-12 rounded-2xl bg-corp-blue/6 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-corp-blue/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+          </div>
+          <p class="text-charcoal/40 text-sm font-medium">Select a subsidiary node to explore its specialisation and visit its website.</p>
+        </div>
+        <div id="preview-card" class="hidden rounded-2xl border border-corp-blue/10 shadow-xl overflow-hidden">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE ACCORDION (shown only on mobile) -->
+    <div id="mobile-tree" class="reveal md:hidden">
+      <!-- Sigmma hub -->
+      <div class="flex items-center gap-3 px-4 py-4 mb-2">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:linear-gradient(145deg,#002a52,#004B87)">
+          <span class="text-cyan font-display font-bold text-base">S</span>
+        </div>
+        <div>
+          <div class="font-display font-bold text-corp-blue text-base">SIGMMA Holdings</div>
+          <div class="text-charcoal/45 text-xs">Parent Hub — 4 Subsidiaries</div>
+        </div>
+      </div>
+      <!-- Items generated by JS -->
+      <div id="mob-acc"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CAPABILITIES
+════════════════════════════════════════════ -->
+<section id="capabilities" class="py-20 lg:py-28" style="background:linear-gradient(180deg,#F4F7F6 0%,#fff 100%)">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Header -->
+    <div class="reveal mb-14">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div>
+          <span class="inline-block text-cyan text-xs font-semibold uppercase tracking-widest mb-4">Core Competencies</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-corp-blue leading-tight">
+            Built for Critical<br>
+            <span class="gt">Infrastructure</span>
+          </h2>
+        </div>
+        <p class="text-charcoal/55 text-base leading-relaxed max-w-md lg:text-right">Three verticals serving the world's most demanding operational environments — from runways to factory floors.</p>
+      </div>
+    </div>
+    <!-- Bento grid -->
+    <div class="reveal grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="cap-card card rounded-2xl overflow-hidden border border-corp-blue/10 bg-white" onmouseenter="capHover(this,true,'#004B87')" onmouseleave="capHover(this,false,'#004B87')">
+        <div class="cap-bar h-1 w-full transition-all duration-500" style="background:linear-gradient(90deg,rgba(0,75,135,.35),rgba(0,75,135,.15))"></div>
+        <div class="p-7 lg:p-8">
+          <div class="flex items-start justify-between mb-5">
+            <div class="cap-icon w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300" style="background:rgba(0,75,135,.1);color:#004B87">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 24h24M8 24V12l8-6 8 6v12"/><rect x="13" y="17" width="6" height="7" rx=".5"/><path stroke-linecap="round" d="M11 15h2M19 15h2M16 6v3"/></svg>
+            </div>
+            <span class="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full" style="color:#004B87;background:rgba(0,75,135,.1)">Aviation Infrastructure</span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-charcoal mb-3">Airport Solutions</h3>
+          <p class="text-charcoal/55 text-sm leading-relaxed mb-6">Full-lifecycle airport terminal systems integration — from conceptual design through commissioning of critical airside and landside infrastructure.</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#004B87"></div><div class="text-charcoal font-semibold text-xs">BHS Systems</div><div class="text-charcoal/45 text-[11px] mt-0.5">Baggage handling & screening</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#004B87"></div><div class="text-charcoal font-semibold text-xs">Boarding Bridges</div><div class="text-charcoal/45 text-[11px] mt-0.5">PBB design & installation</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#004B87"></div><div class="text-charcoal font-semibold text-xs">Security Screening</div><div class="text-charcoal/45 text-[11px] mt-0.5">Integrated checkpoint tech</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#004B87"></div><div class="text-charcoal font-semibold text-xs">Terminal Fit-Out</div><div class="text-charcoal/45 text-[11px] mt-0.5">Infrastructure & MEP</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="cap-card card rounded-2xl overflow-hidden border border-corp-blue/10 bg-white" onmouseenter="capHover(this,true,'#005fa3')" onmouseleave="capHover(this,false,'#005fa3')">
+        <div class="cap-bar h-1 w-full transition-all duration-500" style="background:linear-gradient(90deg,rgba(0,95,163,.35),rgba(0,95,163,.15))"></div>
+        <div class="p-7 lg:p-8">
+          <div class="flex items-start justify-between mb-5">
+            <div class="cap-icon w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300" style="background:rgba(0,95,163,.1);color:#005fa3">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><rect x="2" y="13" width="28" height="6" rx="1.5"/><circle cx="7" cy="23" r="3"/><circle cx="25" cy="23" r="3"/><path stroke-linecap="round" d="M7 13v-3M25 13v-3M12 13V9M20 13V9"/><path stroke-linecap="round" d="M4 10h24"/></svg>
+            </div>
+            <span class="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full" style="color:#005fa3;background:rgba(0,95,163,.1)">Logistics & Industry</span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-charcoal mb-3">Material Handling Systems</h3>
+          <p class="text-charcoal/55 text-sm leading-relaxed mb-6">Precision-engineered conveyor and sorting systems that maximise throughput, reduce downtime, and adapt to the demands of modern logistics and manufacturing.</p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#005fa3"></div><div class="text-charcoal font-semibold text-xs">Conveyor Systems</div><div class="text-charcoal/45 text-[11px] mt-0.5">Belt, roller & overhead</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#005fa3"></div><div class="text-charcoal font-semibold text-xs">Automated Sorting</div><div class="text-charcoal/45 text-[11px] mt-0.5">High-speed divert & merge</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#005fa3"></div><div class="text-charcoal font-semibold text-xs">Custom Layouts</div><div class="text-charcoal/45 text-[11px] mt-0.5">Site-specific flow design</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#005fa3"></div><div class="text-charcoal font-semibold text-xs">MRO Services</div><div class="text-charcoal/45 text-[11px] mt-0.5">Maintenance & spare parts</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="cap-card card rounded-2xl overflow-hidden border border-corp-blue/10 bg-white" onmouseenter="capHover(this,true,'#00AEEF')" onmouseleave="capHover(this,false,'#00AEEF')">
+        <div class="cap-bar h-1 w-full transition-all duration-500" style="background:linear-gradient(90deg,rgba(0,174,239,.45),rgba(0,174,239,.2))"></div>
+        <div class="p-7 lg:p-8">
+          <div class="flex items-start justify-between mb-5">
+            <div class="cap-icon w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300" style="background:rgba(0,174,239,.1);color:#00AEEF">
+              <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="w-8 h-8"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="5"/><path stroke-linecap="round" d="M16 5v4M16 23v4M5 16h4M23 16h4"/><path stroke-linecap="round" d="M8.9 8.9l2.8 2.8M20.3 20.3l2.8 2.8M8.9 23.1l2.8-2.8M20.3 11.7l2.8-2.8"/></svg>
+            </div>
+            <span class="text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full" style="color:#00AEEF;background:rgba(0,174,239,.1)">Industrial Components</span>
+          </div>
+          <h3 class="font-display font-bold text-xl text-charcoal mb-3">Rubber & Industrial Solutions</h3>
+          <p class="text-charcoal/55 text-sm leading-relaxed mb-6">Bespoke rubber compounds and engineered components meeting the toughest industrial standards — built for sealing, conveying, and protecting in harsh environments.</p>
+          <div class="grid grid-cols-1 gap-3">
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#00AEEF"></div><div class="text-charcoal font-semibold text-xs">Engineered Seals</div><div class="text-charcoal/45 text-[11px] mt-0.5">Custom profiles & compounds</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#00AEEF"></div><div class="text-charcoal font-semibold text-xs">Conveyor Belting</div><div class="text-charcoal/45 text-[11px] mt-0.5">Heavy-duty & food-grade</div></div>
+            <div class="feat-item p-3 rounded-xl transition-all duration-300" style="background:#F4F7F6"><div class="w-1.5 h-1.5 rounded-full mb-1.5" style="background:#00AEEF"></div><div class="text-charcoal font-semibold text-xs">Industrial Gaskets</div><div class="text-charcoal/45 text-[11px] mt-0.5">Chemical & thermal resistant</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA strip -->
+    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl" style="background:linear-gradient(135deg,#002a52,#004B87)">
+      <div class="text-center sm:text-left">
+        <div class="text-white font-display font-semibold text-base">Need a tailored solution?</div>
+        <div class="text-white/55 text-sm mt-0.5">Our engineering teams work across verticals to deliver integrated outcomes.</div>
+      </div>
+      <a href="mailto:info@sigmma.com" class="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-corp-blue bg-white font-semibold text-sm hover:bg-cyan hover:text-white transition-all duration-300 shadow-lg">
+        Start a Conversation
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     GLOBAL METRICS
+════════════════════════════════════════════ -->
+<section id="metrics" class="py-20 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal mb-14 text-center">
+      <span class="inline-block text-cyan text-xs font-semibold uppercase tracking-widest mb-4">Our Footprint</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-corp-blue leading-tight mb-4">Presence &amp; Scale</h2>
+      <p class="text-charcoal/55 text-lg max-w-xl mx-auto">A lean, expert-led group with a project pipeline that punches well above its weight.</p>
+    </div>
+    <!-- Metrics -->
+    <div class="reveal grid grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+      <div class="card group p-7 rounded-2xl bg-white border border-corp-blue/10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background:linear-gradient(135deg,rgba(0,75,135,.03),rgba(0,174,239,.04))"></div>
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:bg-corp-blue" style="background:rgba(0,75,135,.08);color:#004B87" id="mi-0">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="font-display font-extrabold text-4xl lg:text-5xl text-corp-blue mb-2 leading-none" style="font-variant-numeric:tabular-nums"><span class="counter" data-target="20" data-suffix="+">0</span></div>
+        <div class="font-display font-semibold text-charcoal text-base mb-1">Team Members</div>
+        <div class="text-charcoal/45 text-xs">Across NZ, India & Europe</div>
+      </div>
+      <div class="card group p-7 rounded-2xl bg-white border border-corp-blue/10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background:linear-gradient(135deg,rgba(0,75,135,.03),rgba(0,174,239,.04))"></div>
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all duration-300" style="background:rgba(0,75,135,.08);color:#004B87">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        </div>
+        <div class="font-display font-extrabold text-4xl lg:text-5xl text-corp-blue mb-2 leading-none" style="font-variant-numeric:tabular-nums"><span class="counter" data-target="4" data-suffix="">0</span></div>
+        <div class="font-display font-semibold text-charcoal text-base mb-1">Subsidiaries</div>
+        <div class="text-charcoal/45 text-xs">Specialised operating companies</div>
+      </div>
+      <div class="card group p-7 rounded-2xl bg-white border border-corp-blue/10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background:linear-gradient(135deg,rgba(0,75,135,.03),rgba(0,174,239,.04))"></div>
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all duration-300" style="background:rgba(0,75,135,.08);color:#004B87">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="font-display font-extrabold text-4xl lg:text-5xl text-corp-blue mb-2 leading-none" style="font-variant-numeric:tabular-nums"><span class="counter" data-target="3" data-suffix="">0</span></div>
+        <div class="font-display font-semibold text-charcoal text-base mb-1">Countries</div>
+        <div class="text-charcoal/45 text-xs">NZ · Romania · India</div>
+      </div>
+      <div class="card group p-7 rounded-2xl bg-white border border-corp-blue/10 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background:linear-gradient(135deg,rgba(0,75,135,.03),rgba(0,174,239,.04))"></div>
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all duration-300" style="background:rgba(0,75,135,.08);color:#004B87">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="font-display font-extrabold text-4xl lg:text-5xl text-corp-blue mb-2 leading-none" style="font-variant-numeric:tabular-nums">USD <span class="counter" data-target="1.2" data-suffix="B+" data-float="1">0</span></div>
+        <div class="font-display font-semibold text-charcoal text-base mb-1">Projects Planned</div>
+        <div class="text-charcoal/45 text-xs">Combined pipeline value</div>
+      </div>
+    </div>
+    <!-- Office map strip -->
+    <div class="reveal rounded-2xl overflow-hidden" style="background:linear-gradient(135deg,#002a52 0%,#004B87 60%,#005fa3 100%)">
+      <div class="p-8 lg:p-10">
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="lg:w-1/3">
+            <h3 class="font-display font-bold text-2xl text-white mb-3 leading-tight">Operating Across Three Continents</h3>
+            <p class="text-white/55 text-sm leading-relaxed">With offices in New Zealand and India, and a European foothold through SelfTrust in Romania, Sigmma bridges markets that few holding groups dare to connect.</p>
+          </div>
+          <div class="lg:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+            <div class="rounded-xl p-4 border border-white/10 hover:border-cyan/40 transition-all duration-300" style="background:rgba(255,255,255,.06)">
+              <div class="text-2xl mb-2">🇳🇿</div>
+              <div class="font-display font-semibold text-white text-sm">Auckland</div>
+              <div class="text-white/45 text-xs mb-1">New Zealand</div>
+              <div class="text-[10px] font-semibold uppercase tracking-wider text-cyan/70">HQ & Operations</div>
+            </div>
+            <div class="rounded-xl p-4 border border-white/10 hover:border-cyan/40 transition-all duration-300" style="background:rgba(255,255,255,.06)">
+              <div class="text-2xl mb-2">🇮🇳</div>
+              <div class="font-display font-semibold text-white text-sm">Delhi</div>
+              <div class="text-white/45 text-xs mb-1">India</div>
+              <div class="text-[10px] font-semibold uppercase tracking-wider text-cyan/70">Project Delivery</div>
+            </div>
+            <div class="rounded-xl p-4 border border-white/10 hover:border-cyan/40 transition-all duration-300" style="background:rgba(255,255,255,.06)">
+              <div class="text-2xl mb-2">🇷🇴</div>
+              <div class="font-display font-semibold text-white text-sm">Bucharest</div>
+              <div class="text-white/45 text-xs mb-1">Romania</div>
+              <div class="text-[10px] font-semibold uppercase tracking-wider text-cyan/70">Tech & Compliance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     PARTNERS
+════════════════════════════════════════════ -->
+<section id="partners" class="py-20 lg:py-28" style="background:linear-gradient(180deg,#fff 0%,#F4F7F6 100%)">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
+    <div class="reveal text-center">
+      <span class="inline-block text-cyan text-xs font-semibold uppercase tracking-widest mb-4">Trusted Partners</span>
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-corp-blue leading-tight mb-4">Global Client Ecosystem</h2>
+      <p class="text-charcoal/55 text-lg max-w-xl mx-auto">Delivering critical infrastructure solutions for some of the most recognised airport and industrial operators worldwide.</p>
+    </div>
+  </div>
+  <!-- Marquee -->
+  <div class="reveal relative overflow-hidden mb-16">
+    <div class="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style="background:linear-gradient(90deg,#F4F7F6,transparent)"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none" style="background:linear-gradient(-90deg,#F4F7F6,transparent)"></div>
+    <div class="marquee py-2" id="marquee-track"></div>
+  </div>
+  <!-- Value props -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="card flex gap-4 p-6 rounded-2xl bg-white border border-corp-blue/10">
+        <div class="text-2xl flex-shrink-0 mt-0.5">✈️</div>
+        <div><div class="font-display font-semibold text-charcoal text-sm mb-2">Aviation-Grade Precision</div><div class="text-charcoal/55 text-xs leading-relaxed">Every BHS and PBB installation meets IATA and ICAO standards, backed by rigorous site acceptance testing.</div></div>
+      </div>
+      <div class="card flex gap-4 p-6 rounded-2xl bg-white border border-corp-blue/10">
+        <div class="text-2xl flex-shrink-0 mt-0.5">🔧</div>
+        <div><div class="font-display font-semibold text-charcoal text-sm mb-2">End-to-End Accountability</div><div class="text-charcoal/55 text-xs leading-relaxed">From feasibility through commissioning, a single Sigmma entity owns the project outcome — no fragmented handoffs.</div></div>
+      </div>
+      <div class="card flex gap-4 p-6 rounded-2xl bg-white border border-corp-blue/10">
+        <div class="text-2xl flex-shrink-0 mt-0.5">🌐</div>
+        <div><div class="font-display font-semibold text-charcoal text-sm mb-2">Cross-Border Execution</div><div class="text-charcoal/55 text-xs leading-relaxed">Proven delivery model spanning New Zealand, South Asia, the Middle East, and European markets.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer style="background:linear-gradient(180deg,#002a52 0%,#001a35 100%)">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-xl bg-corp-blue flex items-center justify-center"><span class="text-cyan font-display font-bold text-lg">S</span></div>
+          <span class="text-white font-display font-semibold text-xl tracking-tight">Sigmma Holdings</span>
+        </div>
+        <p class="text-white/45 text-sm leading-relaxed mb-6 max-w-xs">A globally-oriented holding group delivering precision-engineered solutions across aviation infrastructure, material handling, and industrial components.</p>
+        <a href="mailto:info@sigmma.com" class="inline-flex items-center gap-2 text-cyan text-sm font-medium hover:text-white transition-colors duration-200">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          info@sigmma.com
+        </a>
+      </div>
+      <div>
+        <h4 class="text-white/70 text-xs font-semibold uppercase tracking-widest mb-5">Subsidiaries</h4>
+        <ul class="space-y-3">
+          <li><a href="https://rubberbitsnz.com/" target="_blank" rel="noopener" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Rubber Bits NZ</a></li>
+          <li><a href="https://mexeltec.com/" target="_blank" rel="noopener" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Mexeltec</a></li>
+          <li><a href="https://industrialconveyors.co.nz/" target="_blank" rel="noopener" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Industrial Conveyors</a></li>
+          <li><a href="https://www.selftrust.ro/en" target="_blank" rel="noopener" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">SelfTrust</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white/70 text-xs font-semibold uppercase tracking-widest mb-5">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="#ecosystem" onclick="smoothScroll(event,'#ecosystem')" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Our Ecosystem</a></li>
+          <li><a href="#capabilities" onclick="smoothScroll(event,'#capabilities')" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Capabilities</a></li>
+          <li><a href="#metrics" onclick="smoothScroll(event,'#metrics')" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Global Scale</a></li>
+          <li><a href="#partners" onclick="smoothScroll(event,'#partners')" class="text-white/50 text-sm hover:text-cyan transition-colors duration-200">Partners</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-white/8">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/25 text-xs">© 2025 Sigmma Holdings. All rights reserved.</p>
+      <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-cyan" style="animation:pulse 2s infinite"></div><span class="text-white/25 text-xs">Operational · Global</span></div>
+    </div>
+  </div>
+</footer>
+
+<style>
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+</style>
+
+<script>
+// ──────────────────────────────────
+// DATA
+// ──────────────────────────────────
+const COMPANIES = [
+  {
+    id:0, name:'Rubber Bits NZ', url:'https://rubberbitsnz.com/',
+    tagline:'Precision Rubber Engineering', region:'New Zealand',
+    specialization:'Rubber & Industrial Solutions',
+    description:'Specialists in custom-engineered rubber seals, gaskets, and conveyor belting solutions for heavy industry and construction sectors across New Zealand.',
+    tags:['Rubber Seals','Conveyor Belts','Industrial Gaskets'],
+  },
+  {
+    id:1, name:'Mexeltec', url:'https://mexeltec.com/',
+    tagline:'Airport & Terminal Systems', region:'Global',
+    specialization:'Airport Solutions',
+    description:'End-to-end integrators of airport terminal infrastructure including Baggage Handling Systems (BHS), Passenger Boarding Bridges (PBB), and security screening technology.',
+    tags:['BHS Systems','Boarding Bridges','Security Screening'],
+  },
+  {
+    id:2, name:'Industrial Conveyors', url:'https://industrialconveyors.co.nz/',
+    tagline:'Material Handling Mastery', region:'New Zealand',
+    specialization:'Material Handling Systems',
+    description:'Designers and installers of high-throughput conveyor systems, automated sorting lines, and bespoke material-flow layouts for logistics, mining, and manufacturing.',
+    tags:['Conveyor Design','Automated Sorting','Flow Optimization'],
+  },
+  {
+    id:3, name:'SelfTrust', url:'https://www.selftrust.ro/en',
+    tagline:'Enterprise Trust Solutions', region:'Romania / Europe',
+    specialization:'Technology & Assurance',
+    description:'Technology-driven enterprise serving compliance, digital trust, and assurance solutions, bridging Eastern European expertise with global corporate governance standards.',
+    tags:['Compliance','Digital Trust','Governance'],
+  },
+];
+
+// ──────────────────────────────────
+// NAVBAR SCROLL
+// ──────────────────────────────────
+let activeNode = null;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  const brand = document.getElementById('nav-brand');
+  const links = document.querySelectorAll('.nav-link');
+  if (window.scrollY > 20) {
+    nav.classList.add('glass');
+    brand.style.color = '#004B87';
+    links.forEach(l => { l.style.color = '#1C1E21'; });
+  } else {
+    nav.classList.remove('glass');
+    brand.style.color = 'white';
+    links.forEach(l => { l.style.color = 'rgba(255,255,255,0.8)'; });
+  }
+}, { passive: true });
+
+// ──────────────────────────────────
+// SMOOTH SCROLL
+// ──────────────────────────────────
+function smoothScroll(e, href) {
+  e.preventDefault();
+  document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ──────────────────────────────────
+// MOBILE NAV
+// ──────────────────────────────────
+let mobOpen = false;
+function toggleMobile() {
+  mobOpen = !mobOpen;
+  const menu = document.getElementById('mob-menu');
+  menu.style.maxHeight = mobOpen ? '300px' : '0px';
+  document.getElementById('ham-open').classList.toggle('hidden', mobOpen);
+  document.getElementById('ham-close').classList.toggle('hidden', !mobOpen);
+}
+
+// ──────────────────────────────────
+// HERO ANIMATIONS
+// ──────────────────────────────────
+window.addEventListener('load', () => {
+  const els = ['h-badge','h-head','h-sub','h-cta'];
+  els.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    setTimeout(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 200 + i * 180);
+  });
+});
+
+// ──────────────────────────────────
+// REVEAL ON SCROLL
+// ──────────────────────────────────
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ──────────────────────────────────
+// TREE: hover
+// ──────────────────────────────────
+function nodeHover(idx, on) {
+  if (activeNode === idx) return;
+  const br = document.getElementById('br-' + idx);
+  const jd = document.getElementById('jd-' + idx);
+  const nodeEl = document.getElementById('node-' + idx);
+  const niEl = document.getElementById('ni-' + idx);
+  const ntEl = document.getElementById('nt-' + idx);
+  const ncEl = document.getElementById('nc-' + idx);
+  if (!br) return;
+  if (on) {
+    br.setAttribute('stroke','#00AEEF'); br.setAttribute('stroke-width','2.5'); br.setAttribute('opacity','1');
+    br.style.filter = 'drop-shadow(0 0 5px rgba(0,174,239,0.7))';
+    jd.setAttribute('fill','#00AEEF'); jd.setAttribute('opacity','1');
+    nodeEl.style.borderColor = '#00AEEF';
+    nodeEl.style.background = 'linear-gradient(135deg,rgba(0,75,135,.04),rgba(0,174,239,.05))';
+    nodeEl.style.boxShadow = '0 0 0 3px rgba(0,174,239,.15),0 8px 24px rgba(0,75,135,.12)';
+    niEl.style.background = 'linear-gradient(135deg,#004B87,#005fa3)';
+    niEl.style.color = 'white';
+    ntEl.style.color = '#004B87';
+    ncEl.style.color = '#00AEEF'; ncEl.style.opacity = '1';
+  } else {
+    br.setAttribute('stroke','#004B87'); br.setAttribute('stroke-width','1.5'); br.setAttribute('opacity','.2');
+    br.style.filter = 'none';
+    jd.setAttribute('fill','#004B87'); jd.setAttribute('opacity','.3');
+    nodeEl.style.borderColor = 'rgba(0,75,135,.15)';
+    nodeEl.style.background = 'white';
+    nodeEl.style.boxShadow = '0 2px 8px rgba(0,75,135,.06)';
+    niEl.style.background = 'rgba(0,75,135,.07)'; niEl.style.color = '#004B87';
+    ntEl.style.color = '#1C1E21';
+    ncEl.style.color = '#004B87'; ncEl.style.opacity = '.3';
+  }
+}
+
+// ──────────────────────────────────
+// TREE: click / preview
+// ──────────────────────────────────
+function nodeClick(idx) {
+  const prev = activeNode;
+  if (prev !== null) {
+    nodeHover(prev, false);
+    document.getElementById('nc-' + prev).style.transform = 'rotate(0deg)';
+  }
+  if (prev === idx) {
+    activeNode = null;
+    showPreviewEmpty();
+    return;
+  }
+  activeNode = idx;
+  nodeHover(idx, true);
+  document.getElementById('nc-' + idx).style.transform = 'rotate(90deg)';
+  showPreviewCard(COMPANIES[idx]);
+}
+
+function showPreviewEmpty() {
+  document.getElementById('preview-empty').classList.remove('hidden');
+  document.getElementById('preview-card').classList.add('hidden');
+}
+
+function showPreviewCard(c) {
+  const empty = document.getElementById('preview-empty');
+  const card = document.getElementById('preview-card');
+  empty.classList.add('hidden');
+  card.classList.remove('hidden');
+  card.classList.remove('preview-in');
+  void card.offsetWidth; // reflow
+  card.classList.add('preview-in');
+  card.innerHTML = `
+    <div class="px-6 pt-6 pb-5" style="background:linear-gradient(135deg,#002a52,#004B87)">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <span class="text-cyan text-[10px] font-semibold uppercase tracking-widest">${c.region}</span>
+          <h3 class="font-display font-bold text-xl text-white mt-1">${c.name}</h3>
+          <p class="text-white/60 text-sm mt-1">${c.specialization}</p>
+        </div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,.1);color:#00AEEF">
+          ${getCompanyIcon(c.id)}
+        </div>
+      </div>
+    </div>
+    <div class="px-6 py-5">
+      <p class="text-charcoal/70 text-sm leading-relaxed mb-5">${c.description}</p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        ${c.tags.map(t=>`<span class="text-[11px] font-semibold text-corp-blue px-3 py-1 rounded-full" style="background:rgba(0,75,135,.08);border:1px solid rgba(0,75,135,.12)">${t}</span>`).join('')}
+      </div>
+      <a href="${c.url}" target="_blank" rel="noopener noreferrer"
+         class="btn-p flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold">
+        Visit Website
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+  `;
+}
+
+function getCompanyIcon(id) {
+  const icons = [
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path stroke-linecap="round" d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 3l2 6H4L6 3zM6 9v12M18 3l-2 6h4L18 3zM18 9v12M6 15h12"/><path stroke-linecap="round" d="M3 21h18"/></svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><rect x="2" y="9" width="20" height="4" rx="1"/><circle cx="6" cy="17" r="2"/><circle cx="18" cy="17" r="2"/><path stroke-linecap="round" d="M6 13v2M18 13v2M9 9V7M15 9V7"/></svg>`,
+    `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>`,
+  ];
+  return icons[id] || icons[0];
+}
+
+// ──────────────────────────────────
+// MOBILE ACCORDION BUILD
+// ──────────────────────────────────
+(function buildMobileAcc() {
+  const container = document.getElementById('mob-acc');
+  COMPANIES.forEach((c, i) => {
+    const isLast = i === COMPANIES.length - 1;
+    const div = document.createElement('div');
+    div.className = 'flex gap-0';
+    div.innerHTML = `
+      <div class="flex flex-col items-center w-12 flex-shrink-0 ml-6">
+        <div class="mob-spine-top w-px flex-1 transition-colors duration-300" style="background:rgba(0,75,135,.15);min-height:16px" data-idx="${i}"></div>
+        <div class="mob-dot w-3 h-3 rounded-full border-2 flex-shrink-0 z-10 transition-all duration-300" style="border-color:#004B87;background:white" data-idx="${i}"></div>
+        ${!isLast ? `<div class="mob-spine-bot w-px flex-1 transition-colors duration-300" style="background:rgba(0,75,135,.15);min-height:16px" data-idx="${i}"></div>` : '<div class="flex-1"></div>'}
+      </div>
+      <div class="flex-1 pb-3 pr-2">
+        <button onclick="toggleMobAcc(${i})" class="w-full text-left">
+          <div id="mob-node-${i}" class="flex items-center gap-3 px-4 py-3 rounded-xl border transition-all duration-300" style="border-color:rgba(0,75,135,.12);background:white">
+            <div id="mob-ni-${i}" class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300" style="background:rgba(0,75,135,.07);color:#004B87">
+              ${getCompanyIcon(i)}
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="font-display font-semibold text-sm text-charcoal truncate">${c.name}</div>
+              <div class="text-[11px] text-charcoal/45">${c.tagline}</div>
+            </div>
+            <svg id="mob-chev-${i}" class="w-3.5 h-3.5 text-corp-blue/40 flex-shrink-0 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </button>
+        <div id="mob-body-${i}" class="acc-body">
+          <div class="pt-3 pb-1 px-1">
+            <p class="text-charcoal/65 text-sm leading-relaxed mb-4">${c.description}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${c.tags.map(t=>`<span class="text-[11px] font-semibold text-corp-blue bg-corp-blue/8 px-2.5 py-1 rounded-full">${t}</span>`).join('')}
+            </div>
+            <a href="${c.url}" target="_blank" rel="noopener noreferrer"
+               class="btn-p inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold">
+              Visit Website
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+})();
+
+let openMobIdx = null;
+function toggleMobAcc(idx) {
+  if (openMobIdx !== null && openMobIdx !== idx) closeMobAcc(openMobIdx);
+  if (openMobIdx === idx) { closeMobAcc(idx); openMobIdx = null; return; }
+  openMobIdx = idx;
+  const body = document.getElementById('mob-body-' + idx);
+  const node = document.getElementById('mob-node-' + idx);
+  const ni = document.getElementById('mob-ni-' + idx);
+  const chev = document.getElementById('mob-chev-' + idx);
+  body.classList.add('open');
+  node.style.borderColor = '#00AEEF';
+  node.style.background = 'rgba(0,174,239,.04)';
+  ni.style.background = '#004B87'; ni.style.color = 'white';
+  chev.style.transform = 'rotate(180deg)';
+  document.querySelectorAll('.mob-dot[data-idx="'+idx+'"]').forEach(d => {
+    d.style.borderColor = '#00AEEF'; d.style.background = '#00AEEF';
+    d.style.boxShadow = '0 0 10px rgba(0,174,239,.5)';
+  });
+}
+function closeMobAcc(idx) {
+  const body = document.getElementById('mob-body-' + idx);
+  const node = document.getElementById('mob-node-' + idx);
+  const ni = document.getElementById('mob-ni-' + idx);
+  const chev = document.getElementById('mob-chev-' + idx);
+  if (!body) return;
+  body.classList.remove('open');
+  node.style.borderColor = 'rgba(0,75,135,.12)'; node.style.background = 'white';
+  ni.style.background = 'rgba(0,75,135,.07)'; ni.style.color = '#004B87';
+  chev.style.transform = 'rotate(0deg)';
+  document.querySelectorAll('.mob-dot[data-idx="'+idx+'"]').forEach(d => {
+    d.style.borderColor = '#004B87'; d.style.background = 'white'; d.style.boxShadow = 'none';
+  });
+}
+
+// ──────────────────────────────────
+// CAPABILITIES hover
+// ──────────────────────────────────
+function capHover(card, on, accent) {
+  const bar = card.querySelector('.cap-bar');
+  const icon = card.querySelector('.cap-icon');
+  const feats = card.querySelectorAll('.feat-item');
+  if (on) {
+    bar.style.background = `linear-gradient(90deg,${accent},#00AEEF)`;
+    icon.style.background = `linear-gradient(135deg,${accent},#005fa3)`;
+    icon.style.color = 'white';
+    feats.forEach(f => { f.style.background = `${accent}08`; f.querySelector('div').style.background = '#00AEEF'; });
+  } else {
+    bar.style.background = `linear-gradient(90deg,${accent}55,${accent}22)`;
+    icon.style.background = `${accent}12`;
+    icon.style.color = accent;
+    feats.forEach(f => { f.style.background = '#F4F7F6'; f.querySelector('div').style.background = accent; });
+  }
+}
+
+// ──────────────────────────────────
+// METRICS COUNTER
+// ──────────────────────────────────
+let countersStarted = false;
+const counterObs = new IntersectionObserver((entries) => {
+  if (!entries[0].isIntersecting || countersStarted) return;
+  countersStarted = true;
+  document.querySelectorAll('.counter').forEach(el => {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const isFloat = !!el.dataset.float;
+    const start = performance.now();
+    const dur = 2000;
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = eased * target;
+      el.textContent = (isFloat ? val.toFixed(1) : Math.floor(val)) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = (isFloat ? target.toFixed(1) : target) + suffix;
+    };
+    requestAnimationFrame(tick);
+  });
+}, { threshold: 0.3 });
+const metricsSection = document.getElementById('metrics');
+if (metricsSection) counterObs.observe(metricsSection);
+
+// ──────────────────────────────────
+// PARTNERS MARQUEE
+// ──────────────────────────────────
+const PARTNERS = [
+  { name:'Adani Group', cat:'Airport Conglomerate', init:'AG', color:'#1a4480' },
+  { name:'Oman Airports', cat:'Airport Authority', init:'OA', color:'#006644' },
+  { name:'CAAN Nepal', cat:'Aviation Regulator', init:'CAAN', color:'#8b0000' },
+  { name:'Airports Authority of India', cat:'Airport Operator', init:'AAI', color:'#FF6B00' },
+  { name:'NAIA Terminal 3', cat:'Terminal Operations', init:'NAIA', color:'#003087' },
+  { name:'Fraport', cat:'Airport Management', init:'FRA', color:'#E30613' },
+  { name:'GMR Airports', cat:'Infrastructure Group', init:'GMR', color:'#004B87' },
+  { name:'Airport Authority HK', cat:'Airport Operator', init:'AAHK', color:'#007B5F' },
+];
+
+function buildMarquee() {
+  const track = document.getElementById('marquee-track');
+  const doubled = [...PARTNERS, ...PARTNERS];
+  track.innerHTML = doubled.map(p => `
+    <div class="flex-shrink-0 group mx-4">
+      <div class="flex items-center gap-3 px-5 py-3.5 rounded-xl border border-corp-blue/10 bg-white hover:border-cyan/40 transition-all duration-300 cursor-default" style="min-width:185px">
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold" style="background:${p.color};font-size:${p.init.length>3?'8':'10'}px">${p.init}</div>
+        <div>
+          <div class="font-semibold text-charcoal text-xs leading-tight whitespace-nowrap">${p.name}</div>
+          <div class="text-charcoal/40 text-[10px] whitespace-nowrap mt-0.5">${p.cat}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+buildMarquee();
+</script>
+</body>
+</html>
