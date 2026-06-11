@@ -64,19 +64,19 @@ const Hero: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16">
         <div className="max-w-3xl">
           {/* Badge */}
-          <div ref={badgeRef} className="inline-flex items-center gap-2 mb-8">
+          {/* <div ref={badgeRef} className="inline-flex items-center gap-2 mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse" />
             <span className="text-accent-cyan text-xs font-semibold uppercase tracking-widest">
               Global Holdings Group
             </span>
-          </div>
+          </div> */}
 
           {/* Main headline */}
           <h1
             ref={headlineRef}
             className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.08] tracking-tight mb-6"
           >
-            Comprehensive Solutions for{' '}
+            Advanced Solutions for{' '}
             <span
               className="relative inline-block"
               style={{
@@ -96,9 +96,9 @@ const Hero: React.FC = () => {
             ref={subRef}
             className="text-white/65 text-lg lg:text-xl leading-relaxed max-w-2xl mb-10"
           >
-            Sigmma Holdings orchestrates a portfolio of specialized subsidiaries delivering
-            precision-engineered systems across aviation infrastructure, material handling,
-            and industrial rubber solutions — spanning New Zealand, Europe, and beyond.
+            Sigmma Engineering Limited includes a portfolio of specialized divisions delivering
+            smart-engineered systems across Airports - aviation infrastructure, material handling systems,
+            and industrial rubber products — spanning APAC, EMEA and NAMER.
           </p>
 
           {/* CTA group */}
