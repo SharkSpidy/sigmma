@@ -116,9 +116,6 @@ const EcosystemTree: React.FC = () => {
 
   const activeCompany = companies.find((c) => c.id === activeId)
 
-  // SVG tree layout (desktop)
-  // Parent node: x=80, y=240 (center-left)
-  // Children at x=340, y positions evenly spaced
   const parentX = 80
   const parentY = 220
   const childX = 360
@@ -127,7 +124,6 @@ const EcosystemTree: React.FC = () => {
   return (
     <section id="ecosystem" ref={sectionRef} className="bg-white py-20 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
         <div className="reveal text-center mb-16 lg:mb-20">
           <span className="inline-block text-accent-cyan text-xs font-semibold uppercase tracking-widest mb-4">
             Corporate Ecosystem
@@ -141,33 +137,25 @@ const EcosystemTree: React.FC = () => {
           </p>
         </div>
 
-        {/* Desktop Tree */}
         {!isMobile && (
           <div className="reveal flex flex-col lg:flex-row gap-8 items-start">
-            {/* SVG Tree diagram */}
             <div className="flex-1 min-w-0">
               <div className="relative" style={{ height: '460px' }}>
-                {/* SVG connector lines */}
                 <svg
                   className="absolute inset-0 w-full h-full pointer-events-none"
                   viewBox="0 0 600 460"
                   preserveAspectRatio="xMidYMid meet"
                 >
-                  {/* Trunk line from parent */}
                   <line
                     x1={parentX + 110} y1={parentY}
                     x2={childX - 10} y2={parentY}
                     stroke="#004B87" strokeWidth="1.5" opacity="0.15"
                   />
-
-                  {/* Vertical spine */}
                   <line
                     x1={childX - 10} y1={childYs[0]}
                     x2={childX - 10} y2={childYs[3]}
                     stroke="#004B87" strokeWidth="1.5" opacity="0.15"
                   />
-
-                  {/* Connector branches to each child */}
                   {childYs.map((cy, i) => {
                     const compId = companies[i].id
                     const isHovered = hoveredId === compId
@@ -175,7 +163,6 @@ const EcosystemTree: React.FC = () => {
                     const lit = isHovered || isActive
                     return (
                       <g key={compId}>
-                        {/* Horizontal branch */}
                         <line
                           x1={childX - 10} y1={cy}
                           x2={childX + 14} y2={cy}
@@ -185,7 +172,6 @@ const EcosystemTree: React.FC = () => {
                           className="transition-all duration-300"
                           style={lit ? { filter: 'drop-shadow(0 0 5px rgba(0,174,239,0.7))' } : {}}
                         />
-                        {/* Dot at junction */}
                         <circle
                           cx={childX - 10} cy={cy} r="3"
                           fill={lit ? '#00AEEF' : '#004B87'}
@@ -195,8 +181,6 @@ const EcosystemTree: React.FC = () => {
                       </g>
                     )
                   })}
-
-                  {/* Animated draw-in trunk on load */}
                   {linesDrawn && (
                     <line
                       x1={parentX + 110} y1={parentY}
@@ -209,7 +193,6 @@ const EcosystemTree: React.FC = () => {
                   )}
                 </svg>
 
-                {/* SIGMMA parent node */}
                 <div
                   className="absolute flex flex-col items-center justify-center"
                   style={{
@@ -230,11 +213,9 @@ const EcosystemTree: React.FC = () => {
                       <span className="text-accent-cyan font-display font-bold text-lg">S</span>
                     </div>
                     <span className="text-white font-display font-bold text-sm tracking-wide">SIGMMA</span>
-                    <span className="text-white/50 text-[9px] tracking-widest uppercase mt-0.5">Holdings</span>
                   </div>
                 </div>
 
-                {/* Child company nodes */}
                 {companies.map((company, i) => {
                   const cy = childYs[i]
                   const isActive = activeId === company.id
@@ -271,7 +252,6 @@ const EcosystemTree: React.FC = () => {
                               : '0 2px 8px rgba(0,75,135,0.06)',
                           }}
                         >
-                          {/* Icon */}
                           <div
                             className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300"
                             style={{
@@ -294,7 +274,6 @@ const EcosystemTree: React.FC = () => {
                               {company.tagline}
                             </div>
                           </div>
-                          {/* Chevron */}
                           <svg
                             className="w-3.5 h-3.5 flex-shrink-0 ml-auto transition-all duration-300"
                             style={{
@@ -314,11 +293,9 @@ const EcosystemTree: React.FC = () => {
               </div>
             </div>
 
-            {/* Preview Panel */}
             <div className="w-full lg:w-96 flex-shrink-0">
               {activeCompany ? (
                 <div className="preview-card-enter bg-white rounded-2xl border border-corp-blue/10 shadow-xl overflow-hidden">
-                  {/* Card header */}
                   <div className="px-6 pt-6 pb-5" style={{ background: 'linear-gradient(135deg, #003566, #004B87)' }}>
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -336,13 +313,11 @@ const EcosystemTree: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Card body */}
                   <div className="px-6 py-5">
                     <p className="text-charcoal/70 text-sm leading-relaxed mb-5">
                       {activeCompany.description}
                     </p>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {activeCompany.tags.map((tag) => (
                         <span
@@ -354,18 +329,20 @@ const EcosystemTree: React.FC = () => {
                       ))}
                     </div>
 
-                    {/* CTA */}
-                    <a
-                      href={activeCompany.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold"
-                    >
-                      Visit Website
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
+                    {/* CTA - Conditional render for SelfTrust */}
+                    {activeCompany.id !== 'selftrust' && (
+                        <a
+                          href={activeCompany.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold"
+                        >
+                          Visit Website
+                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                    )}
                   </div>
                 </div>
               ) : (
@@ -387,10 +364,8 @@ const EcosystemTree: React.FC = () => {
           </div>
         )}
 
-        {/* Mobile Accordion */}
         {isMobile && (
           <div className="reveal space-y-0">
-            {/* Sigmma hub */}
             <div className="flex items-center gap-3 px-4 py-4 mb-2">
               <div
                 className="w-12 h-12 rounded-xl flex flex-col items-center justify-center flex-shrink-0"
@@ -404,14 +379,12 @@ const EcosystemTree: React.FC = () => {
               </div>
             </div>
 
-            {/* Timeline items */}
             {companies.map((company, i) => {
               const isOpen = expandedMobile === company.id
               const isLast = i === companies.length - 1
 
               return (
                 <div key={company.id} className="flex gap-0">
-                  {/* Timeline spine */}
                   <div className="flex flex-col items-center w-12 flex-shrink-0 ml-6">
                     <div
                       className="w-px flex-1 transition-colors duration-300"
@@ -434,7 +407,6 @@ const EcosystemTree: React.FC = () => {
                     {isLast && <div className="flex-1" />}
                   </div>
 
-                  {/* Accordion card */}
                   <div className="flex-1 pb-3 pr-2">
                     <button
                       onClick={() => setExpandedMobile(isOpen ? null : company.id)}
@@ -471,7 +443,6 @@ const EcosystemTree: React.FC = () => {
                       </div>
                     </button>
 
-                    {/* Expanded content */}
                     <div
                       className="overflow-hidden transition-all duration-400"
                       style={{ maxHeight: isOpen ? '400px' : '0px', opacity: isOpen ? 1 : 0 }}
@@ -487,17 +458,20 @@ const EcosystemTree: React.FC = () => {
                             </span>
                           ))}
                         </div>
-                        <a
-                          href={company.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
-                        >
-                          Visit Website
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
+                        {/* CTA - Conditional render for SelfTrust */}
+                        {company.id !== 'selftrust' && (
+                            <a
+                              href={company.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold"
+                            >
+                              Visit Website
+                              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                              </svg>
+                            </a>
+                        )}
                       </div>
                     </div>
                   </div>
