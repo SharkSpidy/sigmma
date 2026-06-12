@@ -102,10 +102,10 @@ const Footer: React.FC = () => {
           <p className="text-white/25 text-xs">
             © {new Date().getFullYear()} Sigmma Engineering Limited. All rights reserved.
           </p>
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse" />
             <span className="text-white/25 text-xs">Operational · Global</span>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>
