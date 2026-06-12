@@ -29,12 +29,25 @@ const leftScrollingLogos = [
   'oman.png',
 ]
 
+// New Array for strictly numeric files (Scrolls Right)
+const numericLogos = [
+  '2.png',
+  '3.png',
+  '6.png',
+  '7.png',
+  '8.png',
+  '9.png',
+  '12.png',
+  '13.png',
+  '17.png'
+]
+
 const PartnerLogoImage: React.FC<{ filename: string }> = ({ filename }) => {
   /* NOTE ON IMAGE PATHS: 
-    Depending on your bundler (Vite, Webpack, Next.js), dynamic paths from 'src/assets' 
-    might need to be imported directly. If the images don't load with this string path, 
-    consider moving the 'images' folder to your 'public' directory and using:
-    src={`/images/${filename}`}
+     Depending on your bundler (Vite, Webpack, Next.js), dynamic paths from 'src/assets' 
+     might need to be imported directly. If the images don't load with this string path, 
+     consider moving the 'images' folder to your 'public' directory and using:
+     src={`/images/${filename}`}
   */
   const imagePath = `/images/${filename}`
 
@@ -55,9 +68,10 @@ const PartnerLogoImage: React.FC<{ filename: string }> = ({ filename }) => {
 }
 
 const Partners: React.FC = () => {
-  // We double the arrays so the marquee loop appears seamless
+  // We double/triple the arrays so the marquee loop appears seamless
   const doubledRightLogos = [...rightScrollingLogos, ...rightScrollingLogos, ...rightScrollingLogos]
   const doubledLeftLogos = [...leftScrollingLogos, ...leftScrollingLogos, ...leftScrollingLogos]
+  const doubledNumericLogos = [...numericLogos, ...numericLogos, ...numericLogos]
 
   return (
     <section
@@ -131,6 +145,13 @@ const Partners: React.FC = () => {
         <div className="animate-marquee-left py-2">
           {doubledLeftLogos.map((filename, i) => (
             <PartnerLogoImage key={`left-${filename}-${i}`} filename={filename} />
+          ))}
+        </div>
+
+        {/* Row 3: Numeric files -> Scrolling Right */}
+        <div className="animate-marquee-right py-2">
+          {doubledNumericLogos.map((filename, i) => (
+            <PartnerLogoImage key={`numeric-${filename}-${i}`} filename={filename} />
           ))}
         </div>
       </div>
