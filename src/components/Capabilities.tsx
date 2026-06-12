@@ -221,7 +221,7 @@ const Capabilities: React.FC = () => {
             </div>
           </div>
           <a
-            href="mailto:info@sigmma.com"
+            href="mailto:info@sigmma.co.nz"
             className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-corp-blue bg-white font-semibold text-sm hover:bg-accent-cyan hover:text-white transition-all duration-300 shadow-lg"
           >
             Start a Conversation
