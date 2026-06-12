@@ -25,8 +25,8 @@ const Navbar: React.FC = () => {
             <div className="w-9 h-9 rounded-lg bg-corp-blue flex items-center justify-center shadow-md">
               <span className="text-accent-cyan font-display font-bold text-lg leading-none">S</span>
             </div>
-            <span className="font-display font-semibold text-xl tracking-tight text-white">
-              Sigmma <span className="text-lg">New Zealand</span>
+            <span className="font-display font-semibold text-3xl tracking-tight text-white">
+              SIGMMA <span className="text-sm">| New Zealand</span>
             </span>
           </div>
 

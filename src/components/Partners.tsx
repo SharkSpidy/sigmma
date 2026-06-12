@@ -1,55 +1,98 @@
 import React from 'react'
 
-interface Partner {
-  name: string
-  category: string
-  initials: string
-  color: string
-}
-
-const partners: Partner[] = [
-  { name: 'Adani Group', category: 'Airport Conglomerate', initials: 'AG', color: '#1a4480' },
-  { name: 'Oman Airports', category: 'Airport Authority', initials: 'OA', color: '#006644' },
-  { name: 'Civil Aviation Authority of Nepal', category: 'Aviation Regulator', initials: 'CAAN', color: '#8b0000' },
-  { name: 'Airports Authority of India', category: 'Airport Operator', initials: 'AAI', color: '#FF6B00' },
-  { name: 'NAIA Terminal 3', category: 'Terminal Operations', initials: 'NAIA', color: '#003087' },
-  { name: 'Fraport', category: 'Airport Management', initials: 'FRA', color: '#E30613' },
-  { name: 'GMR Airports', category: 'Infrastructure Group', initials: 'GMR', color: '#004B87' },
-  { name: 'Airport Authority HK', category: 'Airport Operator', initials: 'AAHK', color: '#007B5F' },
+// Array for files starting with an alphabet (Scrolls Right)
+const rightScrollingLogos = [
+  'jetairways.png',
+  'hp.png',
+  'indigo.png',
+  'kuwait.png',
+  'airasia.png',
+  'cial.png',
+  'gofirst.png',
+  'honeywell.png',
+  'hp.png',
+  'spicejet.png',
+  'wwfs.png',
 ]
 
-const PartnerLogo: React.FC<{ partner: Partner }> = ({ partner }) => (
-  <div className="flex-shrink-0 group mx-4">
-    <div
-      className="flex items-center gap-3 px-5 py-3.5 rounded-xl border border-corp-blue/10 bg-white hover:border-accent-cyan/40 transition-all duration-300 cursor-default"
-      style={{ minWidth: '180px' }}
-    >
-      {/* Initials badge */}
+// Array for files starting with '2' (Scrolls Left)
+const leftScrollingLogos = [
+  '2alkhalili.png',
+  '2asha.png',
+  '2assystemstup.png',
+  '2maldives.png',
+  '2cg.png',
+  'qatar.png',
+  'emirates.png',
+  'saudia.png',
+  'ethihad.png',
+  'oman.png',
+]
+
+const PartnerLogoImage: React.FC<{ filename: string }> = ({ filename }) => {
+  /* NOTE ON IMAGE PATHS: 
+    Depending on your bundler (Vite, Webpack, Next.js), dynamic paths from 'src/assets' 
+    might need to be imported directly. If the images don't load with this string path, 
+    consider moving the 'images' folder to your 'public' directory and using:
+    src={`/images/${filename}`}
+  */
+  const imagePath = `/src/assets/images/${filename}`
+
+  return (
+    <div className="flex-shrink-0 group mx-4">
       <div
-        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold leading-tight text-center"
-        style={{ background: partner.color, fontSize: partner.initials.length > 3 ? '8px' : '10px' }}
+        className="flex items-center justify-center px-5 py-3.5 rounded-xl border border-corp-blue/10 bg-white hover:border-accent-cyan/40 hover:shadow-sm transition-all duration-300 cursor-default"
+        style={{ width: '180px', height: '90px' }}
       >
-        {partner.initials}
-      </div>
-      <div>
-        <div className="font-semibold text-charcoal text-xs leading-tight whitespace-nowrap">
-          {partner.name}
-        </div>
-        <div className="text-charcoal/40 text-[10px] whitespace-nowrap mt-0.5">{partner.category}</div>
+        <img
+          src={imagePath}
+          alt={filename.split('.')[0]} // Uses filename without extension as alt text
+          className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
+        />
       </div>
     </div>
-  </div>
-)
+  )
+}
 
 const Partners: React.FC = () => {
-  const doubled = [...partners, ...partners]
+  // We double the arrays so the marquee loop appears seamless
+  const doubledRightLogos = [...rightScrollingLogos, ...rightScrollingLogos, ...rightScrollingLogos]
+  const doubledLeftLogos = [...leftScrollingLogos, ...leftScrollingLogos, ...leftScrollingLogos]
 
   return (
     <section
       id="partners"
-      className="py-20 lg:py-28"
+      className="py-20 lg:py-28 relative"
       style={{ background: 'linear-gradient(180deg, #ffffff 0%, #F4F7F6 100%)' }}
     >
+      {/* Inline styles for the specific marquee animations */}
+      <style>
+        {`
+          @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
+          }
+          @keyframes scroll-right {
+            0% { transform: translateX(-33.33%); }
+            100% { transform: translateX(0); }
+          }
+          .animate-marquee-left {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 25s linear infinite;
+          }
+          .animate-marquee-right {
+            display: flex;
+            width: max-content;
+            animation: scroll-right 25s linear infinite;
+          }
+          /* Pause animation on hover */
+          .animate-marquee-left:hover, .animate-marquee-right:hover {
+            animation-play-state: paused;
+          }
+        `}
+      </style>
+
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
         <div className="reveal text-center">
           <span className="inline-block text-accent-cyan text-xs font-semibold uppercase tracking-widest mb-4">
@@ -65,27 +108,35 @@ const Partners: React.FC = () => {
         </div>
       </div>
 
-      {/* Marquee slider */}
-      <div className="reveal relative overflow-hidden">
+      {/* Marquee slider container */}
+      <div className="reveal relative overflow-hidden flex flex-col gap-6">
         {/* Fade masks */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(90deg, #F4F7F6, transparent)' }}
         />
         <div
-          className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
+          className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
           style={{ background: 'linear-gradient(-90deg, #F4F7F6, transparent)' }}
         />
 
-        <div className="marquee-track py-2">
-          {doubled.map((partner, i) => (
-            <PartnerLogo key={`${partner.name}-${i}`} partner={partner} />
+        {/* Row 1: Alphabet files -> Scrolling Right */}
+        <div className="animate-marquee-right py-2">
+          {doubledRightLogos.map((filename, i) => (
+            <PartnerLogoImage key={`right-${filename}-${i}`} filename={filename} />
+          ))}
+        </div>
+
+        {/* Row 2: Number '2' files -> Scrolling Left */}
+        <div className="animate-marquee-left py-2">
+          {doubledLeftLogos.map((filename, i) => (
+            <PartnerLogoImage key={`left-${filename}-${i}`} filename={filename} />
           ))}
         </div>
       </div>
 
       {/* FOR CONTACT */}
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-16">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 mt-20">
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-6">
           {[
             {
@@ -99,14 +150,14 @@ const Partners: React.FC = () => {
               text: 'sales@sigmma.co.nz',
             },
             {
-              icon: '🌎',
+              icon: '🌍',
               title: 'EMEA Region',
               text: 'ingridfr.sigmma.europe@outlook.com',
             },
           ].map((item) => (
             <div
               key={item.title}
-              className="bento-card flex gap-4 p-6 rounded-2xl bg-white border border-corp-blue/10"
+              className="bento-card flex gap-4 p-6 rounded-2xl bg-white border border-corp-blue/10 hover:shadow-md transition-shadow duration-300"
             >
               <div className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</div>
               <div>
