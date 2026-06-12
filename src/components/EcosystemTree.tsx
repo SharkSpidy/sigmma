@@ -118,7 +118,8 @@ const EcosystemTree: React.FC = () => {
 
   const parentX = 80
   const parentY = 220
-  const childX = 360
+  // Shifted child nodes to the left slightly to allow for wider boxes
+  const childX = 280
   const childYs = [80, 175, 270, 365]
 
   return (
@@ -229,7 +230,7 @@ const EcosystemTree: React.FC = () => {
                       style={{
                         left: `${childX + 14}px`,
                         top: `${cy - 34}px`,
-                        width: '220px',
+                        width: '310px', // Extended width to fully reveal long names
                       }}
                     >
                       <button
@@ -265,7 +266,7 @@ const EcosystemTree: React.FC = () => {
                           </div>
                           <div className="min-w-0">
                             <div
-                              className="font-display font-semibold text-sm leading-tight truncate transition-colors duration-300"
+                              className="font-display font-semibold text-sm leading-tight transition-colors duration-300"
                               style={{ color: lit ? '#004B87' : '#1C1E21' }}
                             >
                               {company.name}
@@ -430,7 +431,7 @@ const EcosystemTree: React.FC = () => {
                           {company.icon}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-display font-semibold text-sm text-charcoal truncate">{company.name}</div>
+                          <div className="font-display font-semibold text-sm text-charcoal">{company.name}</div>
                           <div className="text-[11px] text-charcoal/45">{company.tagline}</div>
                         </div>
                         <svg
