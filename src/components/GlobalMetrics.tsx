@@ -191,8 +191,8 @@ const GlobalMetrics: React.FC = () => {
                 <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                   {[
                     { city: 'Wellington', country: 'New Zealand', flag: '🇳🇿', role: 'HQ' },
-                    { city: 'Delhi', country: 'India', flag: '🇮🇳' },
-                    { city: 'Bucharest', country: 'Romania', flag: '🇷🇴' },
+                    { city: 'Kochi', country: 'India', flag: '🇮🇳' },
+                    { city: 'Lasi', country: 'Romania', flag: '🇷🇴' },
                   ].map((office) => (
                     <div
                       key={office.city}
