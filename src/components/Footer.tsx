@@ -24,11 +24,11 @@ const Footer: React.FC = () => {
                 <span className="text-accent-cyan font-display font-bold text-lg">S</span>
               </div>
               <span className="text-white font-display font-semibold text-xl tracking-tight">
-                Sigmma Holdings
+                Sigmma Engineering Limited
               </span>
             </div>
             <p className="text-white/45 text-sm leading-relaxed mb-6 max-w-xs">
-              A globally-oriented group delivering precision-engineered solutions across
+              A globally-oriented group delivering smart-engineered solutions across
               aviation infrastructure, material handling, and industrial components.
             </p>
             {/* Contact */}
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              info@sigmma.com
+              info@sigmma.co.nz
             </a>
           </div>
 
