@@ -6,6 +6,7 @@ import Capabilities from './components/Capabilities'
 import GlobalMetrics from './components/GlobalMetrics'
 import Partners from './components/Partners'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop' // 1. Add this import
 
 function App() {
   // Intersection observer for reveal animations
@@ -38,6 +39,9 @@ function App() {
         <Partners />
       </main>
       <Footer />
+      
+      {/* 2. Add the component here so it renders on every page */}
+      <ScrollToTop /> 
     </div>
   )
 }
