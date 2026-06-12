@@ -36,7 +36,7 @@ const PartnerLogoImage: React.FC<{ filename: string }> = ({ filename }) => {
     consider moving the 'images' folder to your 'public' directory and using:
     src={`/images/${filename}`}
   */
-  const imagePath = `/src/assets/images/${filename}`
+  const imagePath = `/images/${filename}`
 
   return (
     <div className="flex-shrink-0 group mx-4">
