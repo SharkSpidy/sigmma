@@ -19,14 +19,26 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-corp-blue shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-corp-blue flex items-center justify-center shadow-md">
-              <span className="text-accent-cyan font-display font-bold text-lg leading-none">S</span>
+        <div className="flex items-center justify-between h-20 lg:h-24">
+          
+          {/* Logo Section */}
+          <div className="flex items-center gap-4">
+            {/* Stacked Badge Logo (No border) */}
+            <div className="flex flex-col items-center justify-center bg-[#003566] rounded-2xl p-2.5 shadow-md">
+              <div 
+                className="w-10 h-10 rounded-xl flex items-center justify-center mb-1.5"
+                style={{ backgroundColor: '#005A9C' }}
+              >
+                <span className="text-accent-cyan font-display font-black text-xl leading-none">S</span>
+              </div>
+              <span className="font-display font-bold text-white text-[11px] tracking-widest leading-none">
+                SIGMMA
+              </span>
             </div>
-            <span className="font-display font-semibold text-xl tracking-tight text-white">
-              SIGMMA <span className="text-sm">New Zealand</span>
+            
+            {/* Restored New Zealand Text */}
+            <span className="font-display font-medium text-white/90 text-sm tracking-wide">
+              New Zealand
             </span>
           </div>
 
@@ -100,4 +112,4 @@ const Navbar: React.FC = () => {
   )
 }
 
-export default Navbar
+export default Navb

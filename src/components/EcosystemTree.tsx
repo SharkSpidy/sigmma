@@ -374,8 +374,8 @@ const EcosystemTree: React.FC = () => {
                 <span className="text-accent-cyan font-display font-bold text-base">S</span>
               </div>
               <div>
-                <div className="font-display font-bold text-corp-blue text-base">SIGMMA Holdings</div>
-                <div className="text-charcoal/45 text-xs">Parent Hub — 4 Subsidiaries</div>
+                <div className="font-display font-bold text-corp-blue text-base">SIGMMA</div>
+                <div className="text-charcoal/45 text-xs">Parent Hub — 4 Divisions</div>
               </div>
             </div>
 
