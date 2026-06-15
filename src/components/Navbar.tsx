@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
               </button>
             ))}
             <a
-              href="mailto:info@sigmma.com"
+              href="mailto:info@sigmma.co.nz"
               className="btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg"
             >
               Get in Touch
