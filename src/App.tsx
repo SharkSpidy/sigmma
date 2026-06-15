@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
+import { Analytics } from "@vercel/analytics/next"
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import EcosystemTree from './components/EcosystemTree'
