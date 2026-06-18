@@ -110,7 +110,7 @@ const Partners: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12">
         <div className="reveal text-center">
           <span className="inline-block text-accent-cyan text-xs font-semibold uppercase tracking-widest mb-4">
-            Trusted Partners
+            Our Trusted Partners
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-corp-blue leading-tight mb-4">
             Global Client Ecosystem
