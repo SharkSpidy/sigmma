@@ -5,7 +5,6 @@ const Footer: React.FC = () => {
     { name: 'Rubber Bits NZ', url: 'https://rubberbitsnz.com/' },
     { name: 'Mexeltec', url: 'https://mexeltec.com/' },
     { name: 'Industrial Conveyors', url: 'https://industrialconveyors.co.nz/' },
-    // { name: 'SelfTrust', url: 'https://www.selftrust.ro/en' },
   ]
 
   const scrollTo = (href: string) => {
