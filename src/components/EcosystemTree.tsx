@@ -68,6 +68,22 @@ const companies: Company[] = [
     tags: ['Airport Converyor System', 'Material Handling', 'Airport Security Equipment'],
     region: 'New Zealand',
   },
+  {
+    id: 'selftrust',
+    name: 'SelfTrust',
+    url: 'https://www.selftrust.ro/en',
+    tagline: 'Enterprise Trust Solutions',
+    specialization: 'Technology & Assurance',
+    description:
+      'Manufacturers of Baggage Handling Systems Turnkey, ATRS, Self Bag Drops, Warehouse automation.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+      </svg>
+    ),
+    tags: ['BHS', 'ATRS', 'Warehouse Automation'],
+    region: 'Romania / Europe',
+  },
 ]
 
 const EcosystemTree: React.FC = () => {
@@ -93,11 +109,11 @@ const EcosystemTree: React.FC = () => {
 
   const activeCompany = companies.find((c) => c.id === activeId)
 
-  // Tree diagram coordinates (adjusted for 3 nodes to stay centered)
+  // Tree diagram coordinates
   const parentX = 80
   const parentY = 220
   const childX = 280
-  const childYs = [125, 220, 315] 
+  const childYs = [80, 175, 270, 365]
 
   return (
     <section id="ecosystem" ref={sectionRef} className="bg-white py-20 lg:py-28 overflow-hidden">
@@ -110,7 +126,7 @@ const EcosystemTree: React.FC = () => {
             The Sigmma Family
           </h2>
           <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
-            Three specialized divisions. Unified strategy. Explore Each Division.
+            Four specialized divisions. Unified strategy. Explore Each Division.
           </p>
         </div>
 
@@ -140,7 +156,7 @@ const EcosystemTree: React.FC = () => {
                 {/* Vertical spine */}
                 <line
                   x1={childX - 10} y1={childYs[0]}
-                  x2={childX - 10} y2={childYs[2]}
+                  x2={childX - 10} y2={childYs[3]}
                   stroke="#004B87" strokeWidth="1.5" opacity="0.15"
                 />
                 
@@ -324,17 +340,19 @@ const EcosystemTree: React.FC = () => {
                     ))}
                   </div>
 
-                  <a
-                    href={activeCompany.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold"
-                  >
-                    Visit Website
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                  {activeCompany.id !== 'selftrust' && (
+                    <a
+                      href={activeCompany.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold"
+                    >
+                      Visit Website
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
             ) : (

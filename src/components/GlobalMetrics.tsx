@@ -36,7 +36,7 @@ const metrics: Metric[] = [
     value: 3,
     suffix: '',
     label: 'Manufacturing Locations',
-    sublabel: 'NZ · India',
+    sublabel: 'NZ · Romania · India',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -180,18 +180,19 @@ const GlobalMetrics: React.FC = () => {
                 {/* Left text */}
                 <div className="lg:w-1/3">
                   <h3 className="font-display font-bold text-2xl text-white mb-3 leading-tight">
-                    Operating Across Two Continents
+                    Operating Across Three Continents
                   </h3>
                   <p className="text-white/55 text-sm leading-relaxed">
-                    With a footprint spanning New Zealand and India, Sigmma brings a unique global perspective to markets that seldom meet.
+                    With a footprint spanning New Zealand, India, and a European base in Romania through SelfTrust, Sigmma brings a unique global perspective to markets that seldom meet.
                   </p>
                 </div>
 
                 {/* Office cards */}
-                <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                   {[
                     { city: 'Wellington', country: 'New Zealand', flag: '🇳🇿', role: 'HQ' },
                     { city: 'Kochi', country: 'India', flag: '🇮🇳' },
+                    { city: 'Lasi', country: 'Romania', flag: '🇷🇴' },
                   ].map((office) => (
                     <div
                       key={office.city}
