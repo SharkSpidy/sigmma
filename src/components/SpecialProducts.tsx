@@ -23,70 +23,70 @@ const products: Product[] = [
     name: 'Advance Self-Service Bag Drop',
     description:
       'Lets passengers tag and check their own luggage in seconds. Integrated weight and size verification keeps every bag compliant while cutting queue times at check-in.',
-    image: '/images/products/advance-self-service-bag-drop.jpg',
+    image: '/images/products/1.jpg',
   },
   {
     id: 'self-check-in-kiosk',
     name: 'Self Check-In Kiosk',
     description:
       'Puts check-in in the passenger\u2019s hands. Travellers verify documents, choose seats and print boarding passes independently, freeing staff for higher-value tasks.',
-    image: '/images/products/self-check-in-kiosk.jpg',
+    image: '/images/products/2.jpg',
   },
   {
     id: 'automatic-tray-return-systems',
     name: 'Automatic Tray Return Systems',
     description:
       'Automatically recirculates emptied security trays back to the front of the queue. Keeps checkpoint flow moving and significantly increases screening throughput.',
-    image: '/images/products/automatic-tray-return-systems.jpg',
+    image: '/images/products/3.jpg',
   },
   {
     id: 'return-tray-systems',
     name: 'Return Tray Systems',
     description:
       'A streamlined tray recirculation solution that carries trays from the collection point back to loading. Built for continuous duty, reducing manual handling on the line.',
-    image: '/images/products/return-tray-systems.jpg',
+    image: '/images/products/4.jpg',
   },
   {
     id: 'baggage-reclaim-carousels',
     name: 'Baggage Reclaim Carousels',
     description:
       'Heavy-duty flat-bed carousels engineered for reliable, high-volume baggage reclaim in arrivals halls, built for durability and smooth continuous operation.',
-    image: '/images/products/baggage-reclaim-carousels.jpg',
+    image: '/images/products/5.jpg',
   },
   {
     id: 'baggage-reclaim-carousels-inclined',
     name: 'Baggage Reclaim Carousels (Inclined)',
     description:
       'An inclined-belt reclaim carousel that lifts bags to a comfortable collection height, improving ergonomics and giving passengers a clearer view of arriving luggage.',
-    image: '/images/products/baggage-reclaim-carousels-inclined.jpg',
+    image: '/images/products/6.jpg',
   },
   {
     id: 'vertical-baggage-diverters',
     name: 'Vertical Baggage Diverters',
     description:
       'Precision-engineered diverters that transfer bags between vertical conveyor levels within the BHS, keeping sortation accurate even at high throughput.',
-    image: '/images/products/vertical-baggage-diverters.jpg',
+    image: '/images/products/7.jpg',
   },
   {
     id: 'horizontal-baggage-diverters',
     name: 'Horizontal Baggage Diverters',
     description:
       'Reliable pusher and diverter units that redirect bags across horizontal conveyor lines to the correct sortation destination, minimising mishandling.',
-    image: '/images/products/horizontal-baggage-diverters.jpg',
+    image: '/images/products/8.jpg',
   },
   {
     id: 'merge-units-mdb-connection',
     name: 'Merge Units \u2014 MDB Connection',
     description:
       'Combines multiple baggage input lines into a single, synchronised conveyor flow via MDB connection, preserving spacing and sequence for downstream screening.',
-    image: '/images/products/merge-units-mdb-connection.jpg',
+    image: '/images/products/9.jpg',
   },
   {
     id: 'curved-belt-conveyors',
     name: 'Curved Belt Conveyors',
     description:
       'Space-efficient curved conveyor sections that navigate directional changes within the baggage system without compromising belt speed or bag orientation.',
-    image: '/images/products/curved-belt-conveyors.jpg',
+    image: '/images/products/10.jpg',
   },
 ]
 
