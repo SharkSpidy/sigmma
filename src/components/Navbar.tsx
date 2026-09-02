@@ -1,19 +1,37 @@
 import React, { useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const navLinks = [
+  // In-page anchor links — only meaningful on the home page ("/")
+  const anchorLinks = [
     { label: 'Ecosystem', href: '#ecosystem' },
     { label: 'Capabilities', href: '#capabilities' },
     { label: 'Scale', href: '#metrics' },
     { label: 'Partners', href: '#partners' },
   ]
 
+  // Dedicated page routes
+  const pageLinks = [
+    { label: 'Special Products', to: '/special-products' },
+  ]
+
   const scrollTo = (href: string) => {
     setMobileOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+
+    if (location.pathname !== '/') {
+      // Navigate home first, then scroll once the section has mounted
+      navigate('/')
+      window.setTimeout(() => {
+        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+      return
+    }
+
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -22,7 +40,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20 lg:h-24">
           
           {/* Logo Section */}
-          <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-4" onClick={() => setMobileOpen(false)}>
             {/* Stacked Badge Logo (No border) */}
             <div className="flex flex-col items-center justify-center bg-[#003566] rounded-2xl p-2.5 shadow-md">
               <div 
@@ -40,11 +58,11 @@ const Navbar: React.FC = () => {
             <span className="font-display font-medium text-white/90 text-sm tracking-wide">
               New Zealand
             </span>
-          </div>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {anchorLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
@@ -53,6 +71,22 @@ const Navbar: React.FC = () => {
                 {link.label}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-accent-cyan transition-all duration-300 group-hover:w-full" />
               </button>
+            ))}
+            {pageLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`text-sm font-medium transition-all duration-200 hover:text-accent-cyan relative group ${
+                  location.pathname === link.to ? 'text-accent-cyan' : 'text-white/80'
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute -bottom-0.5 left-0 h-px bg-accent-cyan transition-all duration-300 ${
+                    location.pathname === link.to ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </Link>
             ))}
             <a
               href="mailto:info@sigmma.co.nz"
@@ -86,11 +120,11 @@ const Navbar: React.FC = () => {
       {/* Mobile menu */}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden bg-corp-blue ${
-          mobileOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+          mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="border-t border-white/10 px-6 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
+          {anchorLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
@@ -98,6 +132,18 @@ const Navbar: React.FC = () => {
             >
               {link.label}
             </button>
+          ))}
+          {pageLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              onClick={() => setMobileOpen(false)}
+              className={`text-left font-medium text-sm hover:text-accent-cyan transition-colors ${
+                location.pathname === link.to ? 'text-accent-cyan' : 'text-white'
+              }`}
+            >
+              {link.label}
+            </Link>
           ))}
           <a
             href="mailto:info@sigmma.com"

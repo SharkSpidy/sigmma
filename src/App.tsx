@@ -1,16 +1,18 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import { Analytics } from "@vercel/analytics/next"
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import EcosystemTree from './components/EcosystemTree'
 import Capabilities from './components/Capabilities'
 import GlobalMetrics from './components/GlobalMetrics'
 import Partners from './components/Partners'
+import SpecialProducts from './components/SpecialProducts'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop' // 1. Add this import
 
-function App() {
-  // Intersection observer for reveal animations
+// Reveal-on-scroll animation, shared by every route
+function useRevealAnimation() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -28,21 +30,36 @@ function App() {
 
     return () => observer.disconnect()
   }, [])
+}
 
+function Home() {
+  useRevealAnimation()
+
+  return (
+    <>
+      <Hero />
+      <EcosystemTree />
+      <Capabilities />
+      <GlobalMetrics />
+      <Partners />
+    </>
+  )
+}
+
+function App() {
   return (
     <div className="min-h-screen bg-white text-charcoal">
       <Navbar />
       <main>
-        <Hero />
-        <EcosystemTree />
-        <Capabilities />
-        <GlobalMetrics />
-        <Partners />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/special-products" element={<SpecialProducts />} />
+        </Routes>
       </main>
       <Footer />
-      
+
       {/* 2. Add the component here so it renders on every page */}
-      <ScrollToTop /> 
+      <ScrollToTop />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer: React.FC = () => {
   const subsidiaries = [
@@ -91,6 +92,14 @@ const Footer: React.FC = () => {
                   </button>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/special-products"
+                  className="text-white/50 text-sm hover:text-accent-cyan transition-colors duration-200 text-left"
+                >
+                  Special Products
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
