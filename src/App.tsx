@@ -8,6 +8,7 @@ import Capabilities from './components/Capabilities'
 import GlobalMetrics from './components/GlobalMetrics'
 import Partners from './components/Partners'
 import SpecialProducts from './components/SpecialProducts'
+import ContactUs from './components/ContactUs'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop' // 1. Add this import
 
@@ -42,6 +43,7 @@ function Home() {
       <Capabilities />
       <GlobalMetrics />
       <Partners />
+      <ContactUs />
     </>
   )
 }

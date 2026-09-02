@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface Product {
   id: string
@@ -141,6 +142,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
 
 const SpecialProducts: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -201,8 +203,13 @@ const SpecialProducts: React.FC = () => {
               </div>
             </div>
             <a
-              href="mailto:info@sigmma.co.nz"
-              className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-corp-blue bg-white font-semibold text-sm hover:bg-accent-cyan hover:text-white transition-all duration-300 shadow-lg"
+              onClick={() => {
+                navigate('/#contact-us')
+                setTimeout(() => {
+                  document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }}
+              className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-xl text-corp-blue bg-white font-semibold text-sm hover:bg-accent-cyan hover:text-white transition-all duration-300 shadow-lg cursor-pointer"
             >
               Start a Conversation
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

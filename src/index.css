@@ -92,6 +92,12 @@
   .reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 120ms; }
   .reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 240ms; }
   .reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 360ms; }
+  .reveal-stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 480ms; }
+  .reveal-stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 600ms; }
+  .reveal-stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 720ms; }
+  .reveal-stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 840ms; }
+  .reveal-stagger.visible > *:nth-child(9) { opacity: 1; transform: translateY(0); transition-delay: 960ms; }
+  .reveal-stagger.visible > *:nth-child(10) { opacity: 1; transform: translateY(0); transition-delay: 1080ms; }
 
   /* Ticker / marquee */
   .marquee-track {
