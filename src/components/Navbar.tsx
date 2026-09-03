@@ -89,10 +89,14 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <a
-              href="mailto:info@sigmma.co.nz"
+              href="#contact-us"
+              onClick={(event) => {
+                event.preventDefault()
+                scrollTo('#contact-us')
+              }}
               className="btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg"
             >
-              Get in Touch
+              Contact Us
             </a>
           </div>
 
@@ -146,11 +150,14 @@ const Navbar: React.FC = () => {
             </Link>
           ))}
           <a
-            href="mailto:info@sigmma.com"
+            href="#contact-us"
+            onClick={(event) => {
+              event.preventDefault()
+              scrollTo('#contact-us')
+            }}
             className="btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg text-center"
-            onClick={() => setMobileOpen(false)}
           >
-            Get in Touch
+            Get In Touch
           </a>
         </div>
       </div>
