@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 
 interface Company {
   id: string
@@ -352,6 +353,18 @@ const EcosystemTree: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </a>
+                  )}
+
+                  {activeCompany.id === 'selftrust' && (
+                    <Link
+                      to="/special-products"
+                      className="btn-primary flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold"
+                    >
+                      Explore Special Products
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m-6-6l6 6-6 6" />
+                      </svg>
+                    </Link>
                   )}
                 </div>
               </div>
