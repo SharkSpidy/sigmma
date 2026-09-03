@@ -34,13 +34,21 @@ const Navbar: React.FC = () => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const goHome = () => {
+    setMobileOpen(false)
+    navigate('/')
+    window.setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 0)
+  }
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-corp-blue shadow-sm">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 lg:h-24">
           
           {/* Logo Section */}
-          <Link to="/" className="flex items-center gap-4" onClick={() => setMobileOpen(false)}>
+          <Link to="/" className="flex items-center gap-4" onClick={goHome}>
             {/* Stacked Badge Logo (No border) */}
             <div className="flex flex-col items-center justify-center bg-[#003566] rounded-2xl p-2.5 shadow-md">
               <div 
