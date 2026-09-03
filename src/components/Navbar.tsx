@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
               }}
               className="btn-primary text-sm font-semibold px-5 py-2.5 rounded-lg"
             >
-              Contact Us
+              Get In Touch
             </a>
           </div>
 
