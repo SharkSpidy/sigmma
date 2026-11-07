@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useConsent } from './CookieConsent'
 
 const Footer: React.FC = () => {
+  const { openPreferences } = useConsent()
   const subsidiaries = [
     { name: 'Rubber Bits NZ', url: 'https://rubberbitsnz.com/' },
     { name: 'Mexeltec', url: 'https://mexeltec.com/' },
@@ -108,12 +110,18 @@ const Footer: React.FC = () => {
       {/* Bottom bar */}
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-white/25 text-xs">
+          <p className="text-white/40 text-xs">
             © {new Date().getFullYear()} Sigmma Engineering Limited. All rights reserved.
           </p>
+          <nav aria-label="Legal" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs">
+            <Link to="/privacy-policy" className="text-white/45 hover:text-accent-cyan transition-colors duration-200">Privacy Policy</Link>
+            <Link to="/privacy-policy#cookies" className="text-white/45 hover:text-accent-cyan transition-colors duration-200">Cookie Policy</Link>
+            <Link to="/terms-of-use" className="text-white/45 hover:text-accent-cyan transition-colors duration-200">Terms of Use</Link>
+            <button onClick={openPreferences} className="text-white/45 hover:text-accent-cyan transition-colors duration-200">Cookie settings</button>
+          </nav>
           {/* <div className="flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-accent-cyan animate-pulse" />
-            <span className="text-white/25 text-xs">Operational · Global</span>
+            <span className="text-white/40 text-xs">Operational · Global</span>
           </div> */}
         </div>
       </div>

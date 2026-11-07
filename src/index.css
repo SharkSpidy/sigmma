@@ -196,3 +196,13 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Legal pages */
+.legal-body ul { list-style: disc; padding-left: 1.4rem; }
+.legal-body ul li { margin: 0.3rem 0; }
+.legal-body a { color: #004B87; text-decoration: underline; text-underline-offset: 2px; }
+.legal-body a:hover { color: #0096CC; }
+.legal-body table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.legal-body th, .legal-body td { text-align: left; padding: 0.6rem 0.75rem; border: 1px solid rgba(0, 75, 135, 0.15); vertical-align: top; }
+.legal-body th { background: #F4F7F6; color: #004B87; font-weight: 600; }
+.legal-body .table-wrap { overflow-x: auto; }
